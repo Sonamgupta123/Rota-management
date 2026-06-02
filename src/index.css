@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Inter', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+  }
+}
+
+@layer utilities {
+  /* Premium glassmorphic effects */
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-md border border-slate-200/80 shadow-sm dark:bg-slate-900/60 dark:border-slate-800/80;
+  }
+  
+  .glass-card-hover {
+    @apply hover:shadow-md hover:bg-white/90 hover:border-slate-300 dark:hover:bg-slate-900/80 dark:hover:border-slate-700 transition-all duration-200;
+  }
+
+  .glass-modal {
+    @apply bg-white/95 backdrop-blur-lg border border-slate-200 shadow-xl dark:bg-slate-950/95 dark:border-slate-800;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 10px rgba(56, 163, 148, 0.2);
+  }
+
+  /* Status badge styling */
+  .badge-emerald {
+    @apply bg-emerald-50 text-emerald-700 border border-emerald-200/80 dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-500/20;
+  }
+
+  .badge-red {
+    @apply bg-red-50 text-red-700 border border-red-200/80 dark:bg-red-500/10 dark:text-red-400 dark:border-red-500/20;
+  }
+
+  .badge-amber {
+    @apply bg-amber-50 text-amber-700 border border-amber-200/80 dark:bg-amber-500/10 dark:text-amber-400 dark:border-amber-500/20;
+  }
+
+  .badge-indigo {
+    @apply bg-indigo-50 text-indigo-700 border border-indigo-200/80 dark:bg-indigo-500/10 dark:text-indigo-400 dark:border-indigo-500/20;
+  }
+
+  .badge-slate {
+    @apply bg-slate-50 text-slate-700 border border-slate-200/80 dark:bg-slate-500/10 dark:text-slate-400 dark:border-slate-500/20;
+  }
+
+  /* Custom glass scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-slate-300 rounded-full dark:bg-slate-800 hover:bg-slate-400 dark:hover:bg-slate-700;
+  }
+}
+
+/* Animations support */
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Responsive Login Background to hide photo on mobile and show on desktop */
+.login-bg {
+  background-image: linear-gradient(rgba(10, 28, 23, 0.94), rgba(10, 28, 23, 0.97));
+  background-size: cover;
+  background-position: center;
+}
+
+@media (min-width: 1024px) {
+  .login-bg {
+    background-image: linear-gradient(rgba(10, 28, 23, 0.92), rgba(10, 28, 23, 0.95)), url("https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&q=80&w=1200");
+  }
+}
+
