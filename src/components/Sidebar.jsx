@@ -14,7 +14,9 @@ import {
   X,
   ClipboardList,
   LogOut,
-  BarChart3
+  BarChart3,
+  Eye,
+  GraduationCap
 } from 'lucide-react';
 
 const Sidebar = ({ isOpen, setIsOpen }) => {
@@ -42,7 +44,9 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           { id: 'payroll', label: 'Payroll Summary', icon: Receipt },
           { id: 'reports', label: 'Reports Insights', icon: BarChart3 },
           { id: 'visitor-tablet', label: 'Visitor Registration', icon: ClipboardList },
-          { id: 'audits', label: 'Audits Panel', icon: ShieldCheck }
+          { id: 'audits', label: 'Audits Panel', icon: ShieldCheck },
+          { id: 'observation', label: 'Observation', icon: Eye },
+          { id: 'competency', label: 'Competency', icon: GraduationCap }
         ];
 
       case 'HR':
@@ -52,7 +56,8 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           { id: 'documents', label: 'Documents Manager', icon: FileCheck },
           { id: 'leave', label: 'Leave Approvals', icon: Milestone },
           { id: 'payroll', label: 'Payroll Summary', icon: Receipt },
-          { id: 'rota', label: 'Rota View', icon: CalendarDays }
+          { id: 'rota', label: 'Rota View', icon: CalendarDays },
+          { id: 'competency', label: 'Competency', icon: GraduationCap }
         ];
 
       case 'Compliance Officer':
@@ -60,7 +65,9 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
           { id: 'audits', label: 'Scheduled Audits', icon: ShieldCheck },
           { id: 'documents', label: 'Document Audits', icon: FileCheck },
-          { id: 'rota', label: 'Rota View', icon: CalendarDays }
+          { id: 'rota', label: 'Rota View', icon: CalendarDays },
+          { id: 'observation', label: 'Observation', icon: Eye },
+          { id: 'competency', label: 'Competency', icon: GraduationCap }
         ];
 
       case 'Manager':
@@ -71,7 +78,9 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           { id: 'documents', label: 'Document Verify', icon: FileCheck },
           { id: 'leave', label: 'Leave Approvals', icon: Milestone },
           { id: 'payroll', label: 'Hours Monitor', icon: Receipt },
-          { id: 'audits', label: 'Audits Panel', icon: ShieldCheck }
+          { id: 'audits', label: 'Audits Panel', icon: ShieldCheck },
+          { id: 'observation', label: 'Observation', icon: Eye },
+          { id: 'competency', label: 'Competency', icon: GraduationCap }
         ];
 
       case 'Receptionist':
@@ -85,7 +94,9 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           { id: 'rota', label: 'My Rota Schedule', icon: CalendarDays },
           { id: 'documents', label: 'My Checklist', icon: FileCheck },
           { id: 'leave', label: 'Request Leave', icon: Milestone },
-          { id: 'payroll', label: 'My Payslips', icon: Receipt }
+          { id: 'payroll', label: 'My Payslips', icon: Receipt },
+          { id: 'observation', label: 'Observation', icon: Eye },
+          { id: 'competency', label: 'Competency', icon: GraduationCap }
         ];
 
       default:

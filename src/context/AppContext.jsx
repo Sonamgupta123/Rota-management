@@ -10,7 +10,9 @@ import {
   INITIAL_NOTIFICATIONS,
   buildInitialDocuments,
   MANDATORY_DOCS,
-  INITIAL_DAY_NOTES
+  INITIAL_DAY_NOTES,
+  INITIAL_OBSERVATIONS,
+  INITIAL_ASSESSMENTS
 } from '../utils/mockData';
 
 const AppContext = createContext();
@@ -61,6 +63,8 @@ export const AppProvider = ({ children }) => {
   const [leave, setLeave] = useState(INITIAL_LEAVE);
   const [notifications, setNotifications] = useState(INITIAL_NOTIFICATIONS);
   const [dayNotes, setDayNotes] = useState(INITIAL_DAY_NOTES);
+  const [observations, setObservations] = useState(INITIAL_OBSERVATIONS);
+  const [assessments, setAssessments] = useState(INITIAL_ASSESSMENTS);
 
   // Active Employee state (used when role is Employee)
   const [activeEmployeeId, setActiveEmployeeId] = useState('EMP-002');
@@ -633,6 +637,162 @@ export const AppProvider = ({ children }) => {
     }
   };
 
+  // Observation mutators
+  const addObservation = (obsData) => {
+    const newObs = {
+      ...obsData,
+      id: `OBS-00${observations.length + 1}`,
+      notesHistory: obsData.notes ? [{ date: `${obsData.date} ${obsData.time}`, authorName: employees.find(e => e.id === obsData.createdBy)?.name || 'System', comment: obsData.notes }] : [],
+      attachments: obsData.attachments || [],
+      timeline: [{ date: `${obsData.date} ${obsData.time}`, action: 'Created', by: employees.find(e => e.id === obsData.createdBy)?.name || 'System' }]
+    };
+    setObservations(prev => [newObs, ...prev]);
+    addNotification('info', `New Observation logged for resident ${obsData.resident}`);
+  };
+
+  const updateObservation = (id, updatedData) => {
+    setObservations(prev => prev.map(o => {
+      if (o.id === id) {
+        const changes = [];
+        if (updatedData.assignedStaff !== o.assignedStaff) changes.push('Assigned');
+        if (updatedData.status !== o.status) changes.push(updatedData.status === 'Closed' ? 'Closed' : 'Updated');
+        
+        const newTimeline = [...o.timeline];
+        changes.forEach(c => {
+          newTimeline.push({
+            date: new Date().toISOString().replace('T', ' ').slice(0, 16),
+            action: c,
+            by: employees.find(e => e.id === activeEmployeeId)?.name || 'System'
+          });
+        });
+        
+        if (changes.length === 0) {
+          newTimeline.push({
+            date: new Date().toISOString().replace('T', ' ').slice(0, 16),
+            action: 'Updated',
+            by: employees.find(e => e.id === activeEmployeeId)?.name || 'System'
+          });
+        }
+
+        return {
+          ...o,
+          ...updatedData,
+          timeline: newTimeline
+        };
+      }
+      return o;
+    }));
+  };
+
+  const deleteObservation = (id) => {
+    setObservations(prev => prev.filter(o => o.id !== id));
+    addNotification('warning', `Observation ${id} deleted from system`);
+  };
+
+  const addObservationNote = (obsId, noteText, authorName) => {
+    setObservations(prev => prev.map(o => {
+      if (o.id === obsId) {
+        return {
+          ...o,
+          notesHistory: [...(o.notesHistory || []), {
+            date: new Date().toISOString().replace('T', ' ').slice(0, 16),
+            authorName,
+            comment: noteText
+          }],
+          timeline: [...o.timeline, {
+            date: new Date().toISOString().replace('T', ' ').slice(0, 16),
+            action: 'Updated',
+            by: authorName
+          }]
+        };
+      }
+      return o;
+    }));
+  };
+
+  const addObservationAttachment = (obsId, fileName, size, uploadedBy) => {
+    setObservations(prev => prev.map(o => {
+      if (o.id === obsId) {
+        return {
+          ...o,
+          attachments: [...(o.attachments || []), {
+            name: fileName,
+            size,
+            uploadedBy,
+            date: new Date().toISOString().split('T')[0]
+          }],
+          timeline: [...o.timeline, {
+            date: new Date().toISOString().replace('T', ' ').slice(0, 16),
+            action: 'Updated',
+            by: uploadedBy
+          }]
+        };
+      }
+      return o;
+    }));
+  };
+
+  // Competency mutators
+  const addAssessment = (assessmentData) => {
+    const newAssessment = {
+      ...assessmentData,
+      id: `COMP-00${assessments.length + 1}`,
+      evidence: assessmentData.evidence || [],
+      renewalHistory: []
+    };
+    setAssessments(prev => [newAssessment, ...prev]);
+    addNotification('success', `Competency assessment added for ${assessmentData.staffMember}`);
+  };
+
+  const updateAssessment = (id, updatedData) => {
+    setAssessments(prev => prev.map(a => a.id === id ? { ...a, ...updatedData } : a));
+  };
+
+  const deleteAssessment = (id) => {
+    setAssessments(prev => prev.filter(a => a.id !== id));
+    addNotification('warning', `Assessment record ${id} removed`);
+  };
+
+  const renewCompetency = (compId, reviewDate, expiryDate, assessorName) => {
+    setAssessments(prev => prev.map(a => {
+      if (a.id === compId) {
+        return {
+          ...a,
+          assessmentDate: new Date().toISOString().split('T')[0],
+          reviewDate,
+          expiryDate,
+          assessorName,
+          result: 'Pass',
+          renewalHistory: [...(a.renewalHistory || []), {
+            date: new Date().toISOString().split('T')[0],
+            action: 'Renewed Competency',
+            by: assessorName
+          }]
+        };
+      }
+      return a;
+    }));
+    addNotification('success', `Renewed competency for ${assessments.find(a => a.id === compId)?.staffMember}`);
+  };
+
+  const uploadCompetencyEvidence = (compId, fileName, size) => {
+    const authorName = employees.find(e => e.id === activeEmployeeId)?.name || 'System';
+    setAssessments(prev => prev.map(a => {
+      if (a.id === compId) {
+        return {
+          ...a,
+          evidence: [...(a.evidence || []), {
+            name: fileName,
+            size,
+            date: new Date().toISOString().split('T')[0]
+          }]
+        };
+      }
+      return a;
+    }));
+    addNotification('info', `Evidence uploaded for competency: ${fileName}`);
+  };
+
   return (
     <AppContext.Provider value={{
       darkMode,
@@ -685,7 +845,23 @@ export const AppProvider = ({ children }) => {
       addEmployeeDocument,
       addDayNote,
       editDayNote,
-      deleteDayNote
+      deleteDayNote,
+
+      // Observation Exports
+      observations,
+      addObservation,
+      updateObservation,
+      deleteObservation,
+      addObservationNote,
+      addObservationAttachment,
+
+      // Competency Exports
+      assessments,
+      addAssessment,
+      updateAssessment,
+      deleteAssessment,
+      renewCompetency,
+      uploadCompetencyEvidence
     }}>
       {children}
     </AppContext.Provider>

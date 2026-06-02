@@ -445,3 +445,223 @@ export const INITIAL_DAY_NOTES = [
     createdDate: "02 Jun 2026 10:15"
   }
 ];
+
+export const INITIAL_OBSERVATIONS = [
+  {
+    id: 'OBS-001',
+    date: '2026-06-01',
+    time: '14:30',
+    resident: 'Eleanor Vance',
+    type: 'Fall Risk',
+    customType: '',
+    priority: 'High',
+    location: 'Lounge Area',
+    description: 'Resident appeared unsteady when transitioning from chair to walker.',
+    notes: 'Assisted by care staff. No fall occurred.',
+    actionTaken: 'Monitored for 30 minutes, advised to wait for assistance.',
+    assignedStaff: 'EMP-002',
+    createdBy: 'EMP-002',
+    followUpRequired: true,
+    followUpDate: '2026-06-03',
+    status: 'Open',
+    notesHistory: [
+      { date: '2026-06-01 14:35', authorName: 'James Carter', comment: 'Assisted by care staff. No fall occurred.' }
+    ],
+    attachments: [
+      { name: 'incident_report_draft.pdf', size: '150 KB', uploadedBy: 'James Carter', date: '2026-06-01' }
+    ],
+    timeline: [
+      { date: '2026-06-01 14:30', action: 'Created', by: 'James Carter (EMP-002)' },
+      { date: '2026-06-01 14:35', action: 'Assigned', by: 'James Carter (EMP-002)' }
+    ]
+  },
+  {
+    id: 'OBS-002',
+    date: '2026-05-30',
+    time: '09:15',
+    resident: 'Arthur Pendelton',
+    type: 'Refusal Of Care',
+    customType: '',
+    priority: 'Medium',
+    location: 'Room 12',
+    description: 'Refused morning medication.',
+    notes: 'Stated he felt sick and did not want pills.',
+    actionTaken: 'Reported to Head Nurse. Meds re-offered at 10:00 and accepted.',
+    assignedStaff: 'EMP-003',
+    createdBy: 'EMP-003',
+    followUpRequired: false,
+    followUpDate: '',
+    status: 'Closed',
+    notesHistory: [
+      { date: '2026-05-30 09:20', authorName: 'Amira Patel', comment: 'Stated he felt sick.' }
+    ],
+    attachments: [],
+    timeline: [
+      { date: '2026-05-30 09:15', action: 'Created', by: 'Amira Patel (EMP-003)' },
+      { date: '2026-05-30 09:20', action: 'Assigned', by: 'Amira Patel (EMP-003)' },
+      { date: '2026-05-30 10:00', action: 'Closed', by: 'Sarah Jenkins (EMP-001)' }
+    ]
+  },
+  {
+    id: 'OBS-003',
+    date: '2026-06-02',
+    time: '08:00',
+    resident: 'Eleanor Vance',
+    type: 'Medication Concern',
+    customType: '',
+    priority: 'High',
+    location: 'Clinical Room',
+    description: 'Omission of morning blood pressure medication.',
+    notes: 'Resident refused to take the medication, claiming she already had it.',
+    actionTaken: 'Notified GP and monitored vitals.',
+    assignedStaff: 'EMP-001',
+    createdBy: 'EMP-002',
+    followUpRequired: true,
+    followUpDate: '2026-06-04',
+    status: 'Open',
+    notesHistory: [],
+    attachments: [],
+    timeline: [
+      { date: '2026-06-02 08:00', action: 'Created', by: 'James Carter (EMP-002)' },
+      { date: '2026-06-02 08:15', action: 'Assigned', by: 'Sarah Jenkins (EMP-001)' }
+    ]
+  },
+  {
+    id: 'OBS-004',
+    date: '2026-06-02',
+    time: '11:00',
+    resident: 'Mary Green',
+    type: 'Safeguarding',
+    customType: '',
+    priority: 'High',
+    location: 'Room 14',
+    description: 'Bruising observed on left forearm of unknown origin.',
+    notes: 'Resident does not recall how it happened.',
+    actionTaken: 'Completed incident form and uploaded photo.',
+    assignedStaff: 'EMP-006',
+    createdBy: 'EMP-001',
+    followUpRequired: true,
+    followUpDate: '2026-06-03',
+    status: 'Open',
+    notesHistory: [
+      { date: '2026-06-02 11:30', authorName: 'Marcus Vance', comment: 'Compliance review started.' }
+    ],
+    attachments: [{ name: 'forearm_bruising.jpg', size: '420 KB', uploadedBy: 'Sarah Jenkins', date: '2026-06-02' }],
+    timeline: [
+      { date: '2026-06-02 11:00', action: 'Created', by: 'Sarah Jenkins (EMP-001)' },
+      { date: '2026-06-02 11:15', action: 'Assigned', by: 'Marcus Vance (EMP-006)' },
+      { date: '2026-06-02 11:30', action: 'Reviewed', by: 'Marcus Vance (EMP-006)' }
+    ]
+  },
+  {
+    id: 'OBS-005',
+    date: '2026-06-02',
+    time: '12:30',
+    resident: 'Arthur Pendelton',
+    type: 'Infection',
+    customType: '',
+    priority: 'Medium',
+    location: 'Room 12',
+    description: 'Suspected UTI. Nursing team monitoring hydration levels closely.',
+    notes: 'GP visited and prescribed antibiotics.',
+    actionTaken: 'Antibiotics administered. Hydration chart started.',
+    assignedStaff: 'EMP-002',
+    createdBy: 'EMP-003',
+    followUpRequired: true,
+    followUpDate: '2026-06-05',
+    status: 'Open',
+    notesHistory: [],
+    attachments: [],
+    timeline: [
+      { date: '2026-06-02 12:30', action: 'Created', by: 'Amira Patel (EMP-003)' },
+      { date: '2026-06-02 12:45', action: 'Assigned', by: 'James Carter (EMP-002)' }
+    ]
+  }
+];
+
+export const INITIAL_ASSESSMENTS = [
+  {
+    id: 'COMP-001',
+    staffMember: 'James Carter',
+    employeeId: 'EMP-002',
+    department: 'Nursing',
+    type: 'Medication Competency',
+    customType: '',
+    assessorName: 'Dr. John Doe',
+    assessmentDate: '2025-12-01',
+    reviewDate: '2026-06-01',
+    expiryDate: '2026-12-01',
+    result: 'Pass',
+    score: '95',
+    comments: 'Excellent understanding of MAR charts and safe administration.',
+    recommendations: 'Continue standard practice.',
+    checklist: {
+      'MAR Chart Understanding': true, 'Safe Administration': true, 'Hand Hygiene': true, 
+      'Consent Procedures': true, 'Medication Storage': true, 'Controlled Drugs Handling': true, 
+      'Record Keeping': true, 'PRN Medication Knowledge': true, 'Error Reporting': true
+    },
+    evidence: [{ name: 'practical_observation_record.pdf', size: '240 KB', date: '2025-12-01' }],
+    renewalHistory: []
+  },
+  {
+    id: 'COMP-002',
+    staffMember: 'Elena Rostova',
+    employeeId: 'EMP-005',
+    department: 'Domestic',
+    type: 'Fire Safety Competency',
+    customType: '',
+    assessorName: 'Sarah Jenkins',
+    assessmentDate: '2025-05-15',
+    reviewDate: '2025-11-15',
+    expiryDate: '2026-05-15',
+    result: 'Fail',
+    score: '60',
+    comments: 'Failed to demonstrate correct evacuation route.',
+    recommendations: 'Retrain in 2 weeks.',
+    checklist: {},
+    evidence: [],
+    renewalHistory: []
+  },
+  {
+    id: 'COMP-003',
+    staffMember: 'Amira Patel',
+    employeeId: 'EMP-003',
+    department: 'Care Staff Night',
+    type: 'Medication Error Competency',
+    customType: '',
+    assessorName: 'Sarah Jenkins',
+    assessmentDate: '2025-06-15',
+    reviewDate: '2025-12-15',
+    expiryDate: '2026-06-15',
+    result: 'Pass',
+    score: '88',
+    comments: 'Good understanding of duties of candour and reporting timelines.',
+    recommendations: 'Refresh competency training before expiry.',
+    checklist: {
+      'Error Identification': true, 'Near Miss Reporting': true, 'Duty Of Candour': true, 
+      'Incident Reporting': true, 'Escalation Process': false, 'Documentation Requirements': true, 
+      'Corrective Actions': true
+    },
+    evidence: [{ name: 'med_error_module_cert.png', size: '1.2 MB', date: '2025-06-15' }],
+    renewalHistory: []
+  },
+  {
+    id: 'COMP-004',
+    staffMember: 'Liam O\'Connor',
+    employeeId: 'EMP-008',
+    department: 'Care Staff Day',
+    type: 'Manual Handling Competency',
+    customType: '',
+    assessorName: 'Sarah Jenkins',
+    assessmentDate: '2025-04-10',
+    reviewDate: '2025-10-10',
+    expiryDate: '2026-04-10',
+    result: 'Pass',
+    score: '82',
+    comments: 'Demonstrated safe usage of hoist and slide sheets.',
+    recommendations: 'Schedule renewal assessment.',
+    checklist: {},
+    evidence: [],
+    renewalHistory: [{ date: '2025-04-10', action: 'Initial Certification', by: 'Sarah Jenkins' }]
+  }
+];

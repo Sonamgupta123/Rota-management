@@ -19,6 +19,8 @@ import Payroll from './views/Payroll';
 import Login from './views/Login';
 import Settings from './views/Settings';
 import Reports from './views/Reports';
+import ObservationManagement from './views/ObservationManagement';
+import CompetencyManagement from './views/CompetencyManagement';
 
 // Lucide Icon imports for mobile bottom nav
 import { 
@@ -113,6 +115,10 @@ const getRouteInfoFromPath = (path, isLoggedIn, currentRole) => {
       return { view: 'leave', role: currentRole };
     case 'payroll':
       return { view: 'payroll', role: currentRole };
+    case 'observation':
+      return { view: 'observation', role: currentRole };
+    case 'competency':
+      return { view: 'competency', role: currentRole };
     case 'settings':
       return { view: 'settings', role: currentRole };
     default: {
@@ -257,6 +263,10 @@ const AppContent = () => {
         return <Settings />;
       case 'reports':
         return <Reports />;
+      case 'observation':
+        return <ObservationManagement />;
+      case 'competency':
+        return <CompetencyManagement />;
       default:
         return renderDashboardView();
     }
