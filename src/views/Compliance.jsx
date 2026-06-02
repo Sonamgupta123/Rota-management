@@ -1,5 +1,6 @@
 import logoImg from '../assets/logo.png';
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useApp } from '../context/AppContext';
 import { ALL_AUDIT_QUESTIONS } from '../utils/auditQuestions';
 import { 
@@ -395,6 +396,17 @@ const Compliance = () => {
       {/* Interactive Audit Sheet Form overlays when conducting audit */}
       {selectedAudit ? (
         <div className="max-w-5xl mx-auto rounded-xl p-4 md:p-6 space-y-6 relative animate-slide-up bg-white text-black shadow-lg border border-slate-200">
+          
+          <div className="flex justify-start">
+            <button 
+              type="button" 
+              onClick={() => { setSelectedAudit(null); setDailyAuditForm(null); }} 
+              className="h-10 px-6 rounded-xl border border-slate-300 font-extrabold text-slate-700 bg-white hover:bg-slate-50 hover:text-black transition-all active:scale-[0.98]"
+            >
+              Go Back
+            </button>
+          </div>
+
           {/* Header / Brand Flex row */}
           <div className="flex justify-between items-start border-b-2 border-black pb-3 mb-4 select-none">
             <div className="flex-1 text-center">
@@ -738,14 +750,7 @@ const Compliance = () => {
                 </div>
               </div>
                    {/* Submit Buttons */}
-            <div className="flex justify-between items-center pt-6 border-t border-slate-200">
-              <button 
-                type="button" 
-                onClick={() => { setSelectedAudit(null); setDailyAuditForm(null); }} 
-                className="h-10 px-6 rounded-xl border border-slate-300 font-extrabold text-slate-700 bg-white hover:bg-slate-50 hover:text-black transition-all active:scale-[0.98]"
-              >
-                Go Back
-              </button>
+            <div className="flex justify-end items-center pt-6 border-t border-slate-200">
               <button 
                 type="submit" 
                 className="h-10 px-8 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-extrabold flex items-center gap-1 shadow-md shadow-brand-500/10 active:scale-[0.98] transition-all"
@@ -757,7 +762,13 @@ const Compliance = () => {
           </form>
         </div>
       ) : viewReportAudit ? (
-        <div className="max-w-5xl mx-auto rounded-xl p-4 md:p-6 space-y-6 relative animate-slide-up bg-white text-black shadow-lg border border-slate-200">
+        viewReportAudit.type === "Call Bell Audit" ? (
+          <CallBellAuditReadOnly 
+            viewReportAudit={viewReportAudit}
+            setViewReportAudit={setViewReportAudit}
+          />
+        ) : (
+        <div className="w-full max-w-[95vw] xl:max-w-7xl mx-auto rounded-xl p-4 md:p-6 space-y-6 relative animate-slide-up bg-white text-black shadow-lg border border-slate-200">
           
           {/* Header info */}
           <div className="flex justify-between items-start border-b pb-3 border-slate-200 mb-2 select-none">
@@ -859,7 +870,7 @@ const Compliance = () => {
                         <React.Fragment key={section}>
                           {/* Repeated Green Header Row for Each Section */}
                           <tr className="bg-[#92d050] text-black border-t border-black font-extrabold select-none">
-                            <th className="p-2 border border-black text-center align-middle w-1/4">
+                            <th className="p-2 border border-black text-center align-middle w-[30%] min-w-[250px]">
                               <div className="font-extrabold text-xs">Standard</div>
                               <div className="underline font-bold mt-1 text-xs">{section}</div>
                             </th>
@@ -872,10 +883,10 @@ const Compliance = () => {
                             <th className="p-2 border border-black text-center align-middle text-xs w-12 leading-tight">
                               N/A
                             </th>
-                            <th className="p-2 border border-black text-center align-middle text-xs w-[25%] leading-tight">
+                            <th className="p-2 border border-black text-center align-middle text-xs w-[25%] min-w-[200px] leading-tight">
                               Notes / Guidance
                             </th>
-                            <th className="p-2 border border-black text-center align-middle text-xs w-[25%] leading-tight">
+                            <th className="p-2 border border-black text-center align-middle text-xs w-[25%] min-w-[200px] leading-tight">
                               Comments / Findings
                             </th>
                           </tr>
@@ -1014,6 +1025,7 @@ const Compliance = () => {
           })()}
 
         </div>
+        )
       ) : (
         // Standard split-pane dashboard
         <div className="space-y-5">
@@ -1260,8 +1272,8 @@ const Compliance = () => {
       )}
 
       {/* Schedule Audit Modal (Admin/Officer access) */}
-      {scheduleModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 animate-fade-in">
+      {scheduleModalOpen && createPortal(
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 animate-fade-in">
           <div className="w-full max-w-md rounded-2xl glass-modal p-5 shadow-2xl relative animate-slide-up bg-white">
             <h3 className="text-base font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
               <Calendar className="h-4.5 w-4.5 text-brand-500" />
@@ -1331,13 +1343,14 @@ const Compliance = () => {
 
             </form>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
       {/* Read-Only Report Viewer for Completed Daily Chart Audits */}
-      {viewReportAudit && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 animate-fade-in">
-          <div className="w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-3xl bg-white p-6 md:p-8 shadow-2xl relative animate-slide-up text-xs space-y-6">
+      {viewReportAudit && createPortal(
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 animate-fade-in">
+          <div className="w-full max-w-[95vw] xl:max-w-7xl max-h-[90vh] overflow-y-auto rounded-3xl bg-white p-6 md:p-8 shadow-2xl relative animate-slide-up text-xs space-y-6">
             
             {/* Header info */}
             <div className="flex justify-between items-start border-b pb-3 border-slate-200 mb-2 select-none">
@@ -1439,7 +1452,7 @@ const Compliance = () => {
                           <React.Fragment key={section}>
                             {/* Repeated Green Header Row for Each Section */}
                             <tr className="bg-[#92d050] text-black border-t border-black font-extrabold select-none">
-                              <th className="p-2 border border-black text-center align-middle w-1/4">
+                              <th className="p-2 border border-black text-center align-middle w-[30%] min-w-[250px]">
                                 <div className="font-extrabold text-xs">Standard</div>
                                 <div className="underline font-bold mt-1 text-xs">{section}</div>
                               </th>
@@ -1452,10 +1465,10 @@ const Compliance = () => {
                               <th className="p-2 border border-black text-center align-middle text-xs w-12 leading-tight">
                                 N/A
                               </th>
-                              <th className="p-2 border border-black text-center align-middle text-xs w-[25%] leading-tight">
+                              <th className="p-2 border border-black text-center align-middle text-xs w-[25%] min-w-[200px] leading-tight">
                                 Notes / Guidance
                               </th>
-                              <th className="p-2 border border-black text-center align-middle text-xs w-[25%] leading-tight">
+                              <th className="p-2 border border-black text-center align-middle text-xs w-[25%] min-w-[200px] leading-tight">
                                 Comments / Findings
                               </th>
                             </tr>
@@ -1594,7 +1607,8 @@ const Compliance = () => {
             })()}
 
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
     </div>
