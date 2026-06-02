@@ -1,0 +1,771 @@
+[
+  {
+    "type": "table",
+    "rows": [
+      [
+        "Full Monthly Medication Audit"
+      ]
+    ]
+  },
+  {
+    "type": "p",
+    "text": "<w:tblPr><w:tblStyle w:val=\"TableGrid\"/><w:tblpPr w:leftFromText=\"180\" w:rightFromText=\"180\" w:vertAnchor=\"text\" w:horzAnchor=\"margin\" w:tblpY=\"132\"/><w:tblOverlap w:val=\"never\"/><w:tblW w:w=\"7366\" w:type=\"dxa\"/><w:tblBorders><w:top w:val=\"double\" w:sz=\"4\" w:space=\"0\" w:color=\"70AD47\" w:themeColor=\"accent6\"/><w:left w:val=\"double\" w:sz=\"4\" w:space=\"0\" w:color=\"70AD47\" w:themeColor=\"accent6\"/><w:bottom w:val=\"double\" w:sz=\"4\" w:space=\"0\" w:color=\"70AD47\" w:themeColor=\"accent6\"/><w:right w:val=\"double\" w:sz=\"4\" w:space=\"0\" w:color=\"70AD47\" w:themeColor=\"accent6\"/><w:insideH w:val=\"double\" w:sz=\"4\" w:space=\"0\" w:color=\"70AD47\" w:themeColor=\"accent6\"/><w:insideV w:val=\"double\" w:sz=\"4\" w:space=\"0\" w:color=\"70AD47\" w:themeColor=\"accent6\"/></w:tblBorders><w:tblLook w:val=\"04A0\" w:firstRow=\"1\" w:lastRow=\"0\" w:firstColumn=\"1\" w:lastColumn=\"0\" w:noHBand=\"0\" w:noVBand=\"1\"/></w:tblPr><w:tblGrid><w:gridCol w:w=\"2836\"/><w:gridCol w:w=\"4530\"/></w:tblGrid><w:tr w:rsidR=\"008B66EC\" w14:paraId=\"4DC5F30E\" w14:textId=\"77777777\" w:rsidTr=\"008B66EC\"><w:tc><w:tcPr><w:tcW w:w=\"2836\" w:type=\"dxa\"/><w:shd w:val=\"clear\" w:color=\"auto\" w:fill=\"6A9937\"/></w:tcPr><w:p w14:paraId=\"7597659D\" w14:textId=\"77777777\" w:rsidR=\"008B66EC\" w:rsidRPr=\"00010FE2\" w:rsidRDefault=\"008B66EC\" w:rsidP=\"008B66EC\"><w:pPr><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"00010FE2\"><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t>Name of Home"
+  },
+  {
+    "type": "p",
+    "text": "Date of Audit"
+  },
+  {
+    "type": "p",
+    "text": "Completed by"
+  },
+  {
+    "type": "p",
+    "text": "Actions added to audit action plan"
+  },
+  {
+    "type": "p",
+    "text": "Overall score of Audit"
+  },
+  {
+    "type": "p",
+    "text": "Rag Rating"
+  },
+  {
+    "type": "table",
+    "rows": [
+      [
+        "<w:tab w:val=\"left\" w:pos=\"7770\"/></w:tabs><w:rPr><w:rFonts w:ascii=\"Arial\" w:hAnsi=\"Arial\" w:cs=\"Arial\"/><w:b/><w:bCs/><w:sz w:val=\"28\"/><w:szCs w:val=\"28\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"00FC7DD2\"><w:rPr><w:rFonts w:ascii=\"Arial\" w:hAnsi=\"Arial\" w:cs=\"Arial\"/><w:b/><w:bCs/><w:sz w:val=\"28\"/><w:szCs w:val=\"28\"/></w:rPr><w:t xml:space=\"preserve\">Scoring \\ 90% and above = GREEN \\ 75% - 89% = AMBER \\ 0% - 75% = RED \\ To score – YES and N/A = 1 No – 0 \\ Calculate the number of Yes and N/A answers and divide by the 54 then multiply by 100 – this will give you an overall % of compliance."
+      ]
+    ]
+  },
+  {
+    "type": "p",
+    "text": "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs></w:pPr><w:r><w:br w:type=\"textWrapping\" w:clear=\"all\"/><w:t xml:space=\"preserve\">"
+  },
+  {
+    "type": "table",
+    "rows": [
+      [
+        "",
+        "Audit to be completed every Month by the Manager / Deputy /Care Team Leader of ALL residents."
+      ],
+      [
+        "",
+        "Ordering and Receiving Medicine"
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"00BE1F8B\"><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t>Standard",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"00BE1F8B\"><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t>Yes",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"00BE1F8B\"><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t>No",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"00BE1F8B\"><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t>N/A",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t>Notes / Guidance",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t>Comments / Findings"
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t>Does the home have specific guidance for ordering medications ‘out of hours’",
+        "",
+        "",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"003D7B41\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Ask staff how they order out of hours medicine \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r><w:rPr><w:i/><w:iCs/></w:rPr><w:lastRenderedPageBreak/><w:t>Are there contact details for the out of hours pharmacy available",
+        ""
+      ],
+      [
+        "Are newly dispensed medicines checked against the list of what was requested (the order) and the medicines administration records?",
+        "",
+        "",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:bCs/><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"0006297A\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Check against both new and old MAR charts \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs></w:pPr><w:r w:rsidRPr=\"0006297A\"><w:rPr><w:bCs/><w:i/><w:iCs/></w:rPr><w:t>Check there is sufficient stock to last the cycle",
+        ""
+      ],
+      [
+        "Are dispensed medicines that are received into the home correctly recorded on the new MAR chart and signed in by two staff members?",
+        "",
+        "",
+        "",
+        "Observe ALL of MAR charts – record names of residents checked in comments box.",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t>Are balances of remaining stock of current medicines carried forward onto the new MAR chart correctly?",
+        "",
+        "",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:bCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"003D7B41\"><w:rPr><w:bCs/><w:i/></w:rPr><w:t xml:space=\"preserve\">Observe ALL of MAR chart – record names of residents checked. (Usually PRNs, creams, inhalers, injectables carried forward)",
+        ""
+      ],
+      [
+        "Are all medications received clearly labelled with residents name, name of drug, dose, form and instructions for use?",
+        "",
+        "",
+        "",
+        "All medicines must be individually labelled for the resident. Medication such as creams that come in an outer box should also be labelled e.g. on the box and on the tube of cream",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t xml:space=\"preserve\">Are the MARs printed and legible and hand typed entries are signed by two staff members?",
+        "",
+        "",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"0006297A\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Pharmacy is providing clearly printed MARs. If hand typed ensure that MAR Charts are fully completed",
+        ""
+      ],
+      [
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00BE1F8B\"><w:rPr><w:b/><w:bCs/></w:rPr><w:t>Score",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:b/><w:bCs/></w:rPr></w:pPr><w:r><w:rPr><w:b/><w:bCs/></w:rPr><w:t xml:space=\"preserve\">   / 6",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "p",
+    "text": "Storage"
+  },
+  {
+    "type": "table",
+    "rows": [
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"00BE1F8B\"><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t>Standard",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"00BE1F8B\"><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t>Yes",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"00BE1F8B\"><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t>No",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"00BE1F8B\"><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t>N/A",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t>Notes / Guidance",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"00BE1F8B\"><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t>Comments"
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t xml:space=\"preserve\">Are all medicines stored safely and in line with current legislation and guidance? Is the treatment room locked when not in use and the medication trolley locked and secure?",
+        "",
+        "",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00151A8A\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Secure storage includes: \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00151A8A\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Locked treatment room \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00151A8A\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Locked medicine trolley (tethered to the wall( \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00151A8A\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Locked Medication cupboards \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Locked medication fridge \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00151A8A\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Controlled Drugs cupboard that conforms to the Misuse of Drugs (Safe Custody) Regulations 1973",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t>Are medicines for internal and external use stored separately?",
+        "",
+        "",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00EB6869\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Complete a visual check of the cupboards.",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t>Are medication fridges and treatment room temperatures taken twice daily and there is evidence of action taken where temperatures are found out of range?",
+        "",
+        "",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:rFonts w:cstheme=\"minorHAnsi\"/><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00151A8A\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Room temperatures between 16°C - 25°C \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:rFonts w:cstheme=\"minorHAnsi\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"00151A8A\"><w:rPr><w:rFonts w:cstheme=\"minorHAnsi\"/><w:i/><w:iCs/></w:rPr><w:t>Fridge temperatures between 2°C - 8°C",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs></w:pPr><w:r><w:t>Are the staff aware of which medication needs to be stored in the medication fridge before use and when in use?",
+        "",
+        "",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Ask 2 staff to explain how they store medicine that require refrigeration. \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Check the medication fridge and trolley for correct storage. \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Commonly used medication include: \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Refrigeration before use – Insulin \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Refrigeration before and when in use includes – Daktacort cream / Chloramphenicol eye drops/ some antibiotics syrups",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t xml:space=\"preserve\">Are the medication keys kept securely by the designated person and the treatment room is only accessed by designated staff members who have the proper authorisation?",
+        "",
+        "",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Check the medication keys are kept separately from the master keys. \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Designated people.",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t xml:space=\"preserve\">Do all medications have a date opened annotated on the box / bottle and are all within date?",
+        "",
+        "",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Commonly used short term medications include: \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Insulin – 28 days \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Eye drops – 28 days \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Tubes / pumps of cream – 12 weeks \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Tubs of cream – 28 days",
+        ""
+      ],
+      [
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00BE1F8B\"><w:rPr><w:b/><w:bCs/></w:rPr><w:t>Score",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:ind w:left=\"150\"/><w:rPr><w:b/><w:bCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00C02DBE\"><w:rPr><w:b/><w:bCs/></w:rPr><w:t>/ 6",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "p",
+    "text": "Administration of Medicine"
+  },
+  {
+    "type": "table",
+    "rows": [
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"00BE1F8B\"><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t>Standard",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"004B5977\"><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t>Yes",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"004B5977\"><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t>No",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"004B5977\"><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t>N/A",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t>Notes/Guidance",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"00721315\"><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t>Comments / Findings"
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs></w:pPr><w:r><w:t>Is there a complete signature list at the front of the MARs folder",
+        "",
+        "",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"004B5977\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">All designated staff with medication responsibilities are to sign and initial the signature list \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Check that agency staff with medication responsibilities have signed the list",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t>Do all residents have a fully populated MARs Profile Sheet",
+        "",
+        "",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"005E0DC1\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Front sheet includes: \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"005E0DC1\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Up to date photograph taken within the last 12 months and is a good likeness of the resident \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"005E0DC1\"><w:rPr><w:i/><w:iCs/></w:rPr><w:lastRenderedPageBreak/><w:t>Allergies consistent with the MARs \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"005E0DC1\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Any swallowing difficulties \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"005E0DC1\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>How the resident prefers to take their medication \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r w:rsidRPr=\"005E0DC1\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Specialist administration details such as: Covert administration",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t xml:space=\"preserve\">Do all MARs include the allergy status of the resident or scribed as none known?",
+        "",
+        "",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r w:rsidRPr=\"005E0DC1\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Allergies are to be identified on hand typed and printed MARs",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t>Do all MARs clearly identify what time medication is to be administered, especially those that are to be administered at specific times?",
+        "",
+        "",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Check times are annotated for medication such as: \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Alendronic Acid \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Parkinson’s Medication such as Madopar \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Insulin \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Refer to Policy  – Administration of Medication",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t>Are medications administered using the correct procedures?",
+        "",
+        "",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Observe medication administration to three residents – did the staff member do the following: \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Right person \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Right medication \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Right dose \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Right route \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Right time \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Right to refuse \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Resident was observed taking medication before the MARs was signed",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs></w:pPr><w:r><w:t xml:space=\"preserve\">Is the medication trolley equipped properly before the round commences, is equipment such as pill counters / pill crushers clean and ready to use?",
+        "",
+        "",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00D73329\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Check the trolley to make sure there are sufficient numbers of pill pots and all necessary equipment is clean and contains no debris from previous use \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Does the staff member wear a Do Not Disturb tabard or has in place a process to ensure the round is not disturbed unless there is an emergency. \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Does the staff member conducting the round make sure the trolley is always locked when not in use",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t>Is all non-administration of medication correctly recorded?",
+        "",
+        "",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Check the following: \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Correct code used on MARs \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Entry made in care notes (reverse of MAR) \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Entry made in care records (daily life records) \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>What actions have been taken if the resident has not taken their medication for several days – has the GP been informed etc",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs></w:pPr><w:proofErr w:type=\"gramStart\"/><w:r><w:t>With the exception of PRNs have the MARs been fully completed with no gaps?",
+        "",
+        "",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00CB2FA3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Check the MARs for ALL of the resident population",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t>Do all MARs entries for Variable dose medication show the exact dose administered?",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs></w:pPr><w:r><w:t xml:space=\"preserve\">Is there a PRN protocol in place that is person-centred and gives clear instruction as to when the PRNs are to be offered / administered?",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t xml:space=\"preserve\">Where is medicine administered covertly is the correct documentation in place to support this?",
+        "",
+        "",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Check the following is in place: \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Protocol in place that is person-centred and identifies each medication to be administered covertly \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Medication front sheet identifies medication is to be administered covertly \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Decision specific MCA / Best Interest Meeting /Potential reporting to DoLS \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Pharmacy guidance on how to administer the medication e.g. crushed in hot or cold food or drink etc \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Input from GP as medication may be administered ‘off licence’ e.g. crushed \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00530E2B\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Check there is a care plan in place that supports covert administration of medicine. \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00530E2B\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Refer to – Covert Medication Policy",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:lastRenderedPageBreak/><w:t xml:space=\"preserve\">Are all handtyped entries written clearly with full instructions and countersigned by another staff member who has medication responsibilities?",
+        "",
+        "",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>If a change in dose or instruction is given the old entry must be discontinued and the new instruction added and countersigned. \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">All amendments such as: \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Course completed \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Medication discontinued \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Changes to the time of administration \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Must be doubly signed",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t xml:space=\"preserve\"> Is there evidence on the MAR that weekly stock checks are maintained and the balances are correct?",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t xml:space=\"preserve\">",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Do all stock balances checked for the residents audited match the balance identified on the MAR – check All of residents. Include the stocks that are kept: \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00F23139\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>In the medication stock cupboards / CD cupboard \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00F23139\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>In the medication fridge \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00F23139\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">In the resident’s bedroom \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00F23139\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>In the medicine trolley \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00F23139\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Record the initials of residents checked in comments / Findings box.",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:b/><w:bCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00095E6B\"><w:rPr><w:b/><w:bCs/></w:rPr><w:t xml:space=\"preserve\">Residential \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs></w:pPr><w:r><w:t xml:space=\"preserve\">There is evidence on the MARs of medication administration by external healthcare professionals?",
+        "",
+        "",
+        "",
+        "If other healthcare professionals come in to administer e.g. insulin, denosumab, vitamin B12 injections, antipsychotic depot injections etc this is recorded in the residents care records or on the MARs.",
+        ""
+      ],
+      [
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00BE1F8B\"><w:rPr><w:b/><w:bCs/></w:rPr><w:t xml:space=\"preserve\">Score",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00BE1F8B\"><w:rPr><w:b/><w:bCs/></w:rPr><w:t xml:space=\"preserve\">      / 14",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "p",
+    "text": "Specialist Administrations"
+  },
+  {
+    "type": "table",
+    "rows": [
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"00CD0A8F\"><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t>Standard",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"00CD0A8F\"><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t>Yes",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"00CD0A8F\"><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t xml:space=\"preserve\">No",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"00CD0A8F\"><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t>N/A",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t>Notes / Guidance",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t>Comments / Findings"
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs></w:pPr><w:r><w:t xml:space=\"preserve\">Are all residents who self-administer their medication are assessed as competent to do so?",
+        "",
+        "",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00F23139\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Check there is a Self-Administering Assessment in place that has been signed by the GP. \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00F23139\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Check the resident has a lockable storage facility e.g. drawer in place. \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00F23139\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">The MARs clearly identifies the medication that the resident can self-administer. \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00F23139\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Check the staff have a system in place to monitor the resident e.g. weekly stock checks with the residents consent.",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t xml:space=\"preserve\">Check a residents who are prescribed Warfarin, is there all necessary documentation in place to support safe administration?",
+        "",
+        "",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Check there is a copy of the most recent MAR, make sure the next blood test is not overdue, (this could be in the form of the ‘Yellow’ book or on official paperwork from the anticoagulation clinic) \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>The actual dose given is documented on the MARs – not the number of tablets given \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008701F3\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Check the warfarin monitoring chart is being used \\ Refer to https://www.cqc.org.uk/guidance-providers/adult-social-care/high-risk-medicines-anticoagulants for further guidance where necessary",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t xml:space=\"preserve\">Check all residents who are prescribed Insulin, is all necessary documentation in place to support safe administration? \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t xml:space=\"preserve\">",
+        "",
+        "",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008B654D\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Check the Blood Sugar Monitoring Chart – are the tests being completed in accordance with the care plan. \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"008B654D\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Check the blood sugars are maintained within the identified acceptable limits and action taken when the levels are out of range. \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00006B6F\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Does the MAR chart clearly identify the dosage in UNITs and does not use abbreviations such as U or IU. \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Check that safe sharps are being used e.g. lancets and needles \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Check that the CTL take the sharps box to the resident to ensure safe disposal \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Record initials of resident checked in comments/ findings section",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:proofErr w:type=\"gramStart\"/><w:r><w:t xml:space=\"preserve\">Check  residents who uses Oxygen, is this being administered safely?",
+        "",
+        "",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"001F1278\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Check that there is appropriate signage in place and that the cylinders are being stored safely. \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"001F1278\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Cylinders should be stored upright and attached to the wall, or stored in a trolley that is specifically designed for that use. The should be stored in an area that is clean, dry and not exposed to any extremes of heat. \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"001F1278\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Check the resident has a care plan that directs how the oxygen is to be used such as flow rate, equipment required such as nasal cannula or face mask. \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00F75A65\"><w:rPr><w:i/><w:iCs/></w:rPr><w:lastRenderedPageBreak/><w:t>Put initial of resident checked in comments/ findings section",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t>Is there evidence that the application sites for transdermal patches, insulin etc are being rotated?",
+        "",
+        "",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00567D65\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Check the insulin recording charts / patch recording charts are completed appropriately to demonstrate safe application \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Record the initial of resident checked in comments/findings section",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t>Is there evidence to show that medications given at varying intervals are being administered in accordance with information on the FP10 (prescription)?",
+        "",
+        "",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00F75A65\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Check records for residents receiving medications such as: \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00F75A65\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Vitamin B12 \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00F75A65\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Alendronic Acid (Weekly) \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00F75A65\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Fentanyl Patch (72 hours) \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:proofErr w:type=\"spellStart\"/><w:r w:rsidRPr=\"00F75A65\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Butrans Patch (every 7 days) \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00F75A65\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Depot injections (monthly etc) \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00F75A65\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Check the MAR is scored out to guide when administration of the medication is due \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs></w:pPr><w:r><w:t>Put initials of residents checked in comments/findings section",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs></w:pPr><w:r><w:t>Are anticipatory (just in case) medications safely managed?",
+        "",
+        "",
+        "",
+        "Check there is an anticipatory protocol in place that is person-centred and details how, when and why these are to be administered.. \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Where rescue remedies have been prescribed check the directions for use are clearly documented on the MARs and the associated care plan.",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs></w:pPr><w:r><w:lastRenderedPageBreak/><w:t>Where medication is prescribed that requires specialist administration, are staff fully trained and competent?",
+        "",
+        "",
+        "",
+        "This relates to medication such as: \\ Syringe Drivers \\ Subcutaneous and Intramuscular administration \\ Buccal Midazolam or rectal diazepam",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00CD0A8F\"><w:rPr><w:b/><w:bCs/></w:rPr><w:t xml:space=\"preserve\">Score",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00CD0A8F\"><w:rPr><w:b/><w:bCs/></w:rPr><w:t xml:space=\"preserve\">    /8",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "p",
+    "text": "Record Keeping  / Training / policies"
+  },
+  {
+    "type": "table",
+    "rows": [
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"00CD0A8F\"><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t>Standard",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"00CD0A8F\"><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t>Yes",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t>No",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t>N/A",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t xml:space=\"preserve\">Notes / Guidance",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t xml:space=\"preserve\">Comments / Findngs"
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t>Staff know how to access the medication policies?",
+        "",
+        "",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00501FAB\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Ask two staff with medication responsibilities where the policies are kept and how they utilise them when required?",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs></w:pPr><w:r><w:t>All sharps’ boxes are dated when assembled and when closed",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t>All staff with medication responsibilities have undergone their training and are up to date with their competency checks?",
+        "",
+        "",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00A112AE\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Check that staff who medicate residents have undergone a minimum annual medication competency.",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t xml:space=\"preserve\">Is there an up to date BNF available in the medication room?",
+        "",
+        "",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00A112AE\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>BNF must be dated within 12 months – request an up to date BNF from your pharmacy supplier where necessary",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t xml:space=\"preserve\"> Is there evidence that all medication errors have been fully investigated and reported internally and externally (where appropriate) to Regulators, Safeguarding etc",
+        "",
+        "",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00501FAB\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Medication incident examples below: \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00501FAB\"><w:rPr><w:i/><w:iCs/></w:rPr><w:lastRenderedPageBreak/><w:t>Medication administered to the wrong resident \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00501FAB\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Residents administered medication that they are allergic to \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00501FAB\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Wrong dosage administered \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00501FAB\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Out of stock \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00501FAB\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Errors relating to pharmacy / GP / DN etc \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"000072FB\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>NB this is not an exhaustive list \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Check there is evidence of lessons learned where appropriate.",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t xml:space=\"preserve\">Where appropriate Transfers of Care have taken place effectively?",
+        "",
+        "",
+        "",
+        "Transfer of care includes new admissions to the home, or transfer and readmission from hospital. \\ Check a new admission: were sufficient stocks of medication received, did 2 staff sign the hand typed MARs. \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:bCs/><w:i/><w:iCs/></w:rPr></w:pPr><w:r><w:rPr><w:bCs/><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Check a full discharge summary was received from the hospital that detailed medications.",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t xml:space=\"preserve\">Are Topical Medications administered safely with all supporting documentation in place.",
+        "",
+        "",
+        "",
+        "Check completion of topical MAR charts and body maps. \\ If topical medication is kept in the residents room check these are stored safely. \\ Check the topical is annotated with the date opened and that the resident is not using another residents medication \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:bCs/><w:i/><w:iCs/></w:rPr></w:pPr><w:r><w:rPr><w:bCs/><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">If HCA’s are administering topicals have they been trained and deemed competent to do so.",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:lastRenderedPageBreak/><w:t>Are Controlled medications stored appropriately with robust records maintained?",
+        "",
+        "",
+        "",
+        "Check the controlled drug register is maintained correctly: \\ The register is completed by two staff members \\ The register contains records of receipt, administration and disposal \\ Any errors have one line scribed through with a full explanation \\ All entries are written in black ink \\ kits are used to dispose of the medication \\ Ask two members of staff how they use the denaturing kits and how they dispose of CD patches such as Fentanyl \\ In Residential homes the pharmacy returns book is completed for medication that is no longer required",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t>Are Controlled medications administered safely?",
+        "",
+        "",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r w:rsidRPr=\"00DD6E9A\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Where possible observe a CD administration to make sure two staff members complete the register, one staff member administers the medication and the second staff member acts as a witness. \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00DD6E9A\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Check staff understanding of those medications that do not legally require safe custody and records E.g. Gabapentin, pregabalin, tramadol, zopiclone, lorazepam but should be denatured in a DOOP kit.",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs></w:pPr><w:r><w:lastRenderedPageBreak/><w:t>Is there evidence that minimum weekly stock checks are carried out on Controlled Drugs?",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs></w:pPr><w:r><w:t xml:space=\"preserve\">",
+        "",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00195950\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Check the CD register and complete a stock check to confirm the balances are correct. \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Make sure the CD checks have been carried out by two staff who have medication responsibilities \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Refer – Controlled Drugs Policy",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs></w:pPr><w:r><w:t xml:space=\"preserve\">Is there evidence that Homely Remedies (where used) are managed in line with policy?",
+        "",
+        "",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Homely remedies should undergo a minimum monthly check. \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Check the opening dates of any liquid medication to make sure it is in date \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Check the homely remedies are in accordance with the agree formulary \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Where residents have required homely remedies for 2 consecutive days the have been referred to the GP \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Check homely remedies have been purchased from the pharmacy \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Check that any homely remedies administered are recorded on the MARs and in daily records.",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00CD0A8F\"><w:rPr><w:b/><w:bCs/></w:rPr><w:t xml:space=\"preserve\">Score",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00CD0A8F\"><w:rPr><w:b/><w:bCs/></w:rPr><w:t xml:space=\"preserve\">        / 11",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "p",
+    "text": "Dementia and Wellbeing"
+  },
+  {
+    "type": "table",
+    "rows": [
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"00CD0A8F\"><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t>Standard",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"00CD0A8F\"><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t>Yes",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"00CD0A8F\"><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t xml:space=\"preserve\">No",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"00CD0A8F\"><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t>N/A",
+        "",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t>Where residents are prescribed medications that are to be administered on a bi-monthly or 3 is this managed effectively?",
+        "",
+        "",
+        "",
+        "Medications include; Lithium, Clozapine, leflunomide. Check that there is a process in place to manage the regular blood tests. \\ https://www.cqc.org.uk/guidance-providers/adult-social-care/high-risk-medicines-lithium \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t xml:space=\"preserve\">Check the MARs are correctly scribed for monthly / three monthly depot injections to make sure a dose is  not missed.",
+        ""
+      ],
+      [
+        "Where residents are prescribed specific dementia medication such as: Cholinesterase inhibitors - AChEi is there evidence in place that these have been prescribed by a Consultant Psychiatrist &amp; reviewed minimum yearly or when required by GP",
+        "",
+        "",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t>Refer to the following for further guidance where required: \\ https://www.nice.org.uk/guidance/ta217/chapter/1-guidance \\ https://www.nhs.uk/conditions/dementia/treatment/ \\ https://www.alzheimers.org.uk/about-dementia/treatments/drugs/drug-treatments-alzheimers-disease",
+        ""
+      ],
+      [
+        "Where residents have been prescribed more than one anti-psychotic medication such as ( e.g. Risperidone, Olanzapine, Quetiapine) is there evidence that these have been reviewed minimum yearly or when required by GP",
+        "",
+        "",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t>Refer to the following links for further guidance: \\ https://www.nice.org.uk/advice/ktt7/resources/lowdose-antipsychotics-in-people-with-dementia-1632175200709#:~:text=A%20person%20living%20with%20dementia,try%20to%20help%20their%20distress",
+        ""
+      ],
+      [
+        "Where residents have been prescribed MAOI`s - Monoamine oxidase B inhibitors (for example, selegiline and rasagiline)?, is there reference in their Nutritional care plan of foods to avoid?",
+        "",
+        "",
+        "",
+        "Consider the following guidance: \\ https://bnf.nice.org.uk/drug-class/monoamine-oxidase-inhibitors.html \\ Have residents been reviewed by the GP minimum 12 months or as and when required? \\ Has there been involvement &amp; review with a Consultant psychiatrist? \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:hyperlink r:id=\"rId17\" w:history=\"1\"><w:r><w:rPr><w:rStyle w:val=\"Hyperlink\"/></w:rPr><w:t>file:///C:/Users/Julie/Downloads/depression-antidepressant-treatment-in-adults.pdf",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t xml:space=\"preserve\">Where residents are living with Dementia and have been prescribed sleeping tablets (Hypnotics) and an antipsychotic / Melatonin has the GP reviewed in the last 12 months or as and when required?",
+        "",
+        "",
+        "",
+        "Consider the following guidance: \\ https://www.nice.org.uk/advice/ktt6/chapter/Evidence-context",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00CD0A8F\"><w:rPr><w:b/><w:bCs/></w:rPr><w:t xml:space=\"preserve\">Score",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00CD0A8F\"><w:rPr><w:b/><w:bCs/></w:rPr><w:t xml:space=\"preserve\">       / 5",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "p",
+    "text": "Disposal of Medication"
+  },
+  {
+    "type": "table",
+    "rows": [
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"00CD0A8F\"><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:lastRenderedPageBreak/><w:t>Standard",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t xml:space=\"preserve\">Yes",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t>No",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t>N/A",
+        "",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t>Is there evidence that medication that is no longer required, or have not been administered are disposed of safely?",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs></w:pPr><w:r><w:t xml:space=\"preserve\">",
+        "",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00500273\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Discontinued or medication not administered are disposed of immediately. A record of all disposed of medication is kept and copies of waste consignment notes are kept in the home. \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00500273\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">For residential homes waste medication is returned to the pharmacy and a record kept. \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:i/><w:iCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00500273\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t xml:space=\"preserve\">Check the waste medication is stored safely in a tamper proof container until collection. \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r w:rsidRPr=\"00500273\"><w:rPr><w:i/><w:iCs/></w:rPr><w:t>Do records include name of resident, date of disposal, name, strength and quantity of medicines, reasons for disposal, and signature of staff recording the waste?",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t>Are medications for deceased residents kept for a minimum of 7 days after death or retained safely where instructed by the Coroner in case of investigation?",
+        "",
+        "",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t xml:space=\"preserve\">Medication for deceased residents are stored safely in a container or bag that identifies the medicine is being held for 7 days.",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t>Are medications consigned to waste appropriately disposed of?",
+        "",
+        "",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t xml:space=\"preserve\">Check all medications that could be carried forwards have not been consigned to waste at the beginning of the new cycle. \\ <w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t xml:space=\"preserve\">Check that the staff are ordering medications appropriately and are not overstocking;",
+        ""
+      ],
+      [
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00CD0A8F\"><w:rPr><w:b/><w:bCs/></w:rPr><w:t xml:space=\"preserve\">Score",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00CD0A8F\"><w:rPr><w:b/><w:bCs/></w:rPr><w:t xml:space=\"preserve\">    / 3",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "p",
+    "text": "Miscellaneous"
+  },
+  {
+    "type": "table",
+    "rows": [
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"00CD0A8F\"><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:lastRenderedPageBreak/><w:t>Standard",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"00CD0A8F\"><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t>Yes",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"00CD0A8F\"><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t xml:space=\"preserve\">No",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"00CD0A8F\"><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t>N/A",
+        "",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/></w:pPr><w:r><w:t>Have all actions identified at the last audit been completed?",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00CD0A8F\"><w:rPr><w:b/><w:bCs/></w:rPr><w:t xml:space=\"preserve\">Score",
+        "",
+        "<w:tab w:val=\"left\" w:pos=\"5565\"/></w:tabs><w:spacing w:after=\"160\" w:line=\"259\" w:lineRule=\"auto\"/><w:rPr><w:b/><w:bCs/></w:rPr></w:pPr><w:r w:rsidRPr=\"00CD0A8F\"><w:rPr><w:b/><w:bCs/></w:rPr><w:t xml:space=\"preserve\">        / 1",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "p",
+    "text": "Scoring"
+  },
+  {
+    "type": "table",
+    "rows": [
+      [
+        "Standard",
+        "Possible Score",
+        "Actual Score",
+        "Percentage"
+      ],
+      [
+        "Ordering and Receipt of medicine",
+        "6",
+        "",
+        ""
+      ],
+      [
+        "Storage of medicine",
+        "6",
+        "",
+        ""
+      ],
+      [
+        "Administration of medicine",
+        "14",
+        "",
+        ""
+      ],
+      [
+        "Specialist Administration",
+        "8",
+        "",
+        ""
+      ],
+      [
+        "Record Keeping",
+        "11",
+        "",
+        ""
+      ],
+      [
+        "Dementia and Wellbeing",
+        "5",
+        "",
+        ""
+      ],
+      [
+        "Disposal of Medication",
+        "3",
+        "",
+        ""
+      ],
+      [
+        "Miscellaneous",
+        "1",
+        "",
+        ""
+      ],
+      [
+        "Total score",
+        "54",
+        "",
+        ""
+      ]
+    ]
+  },
+  {
+    "type": "p",
+    "text": "<w:tblPr><w:tblStyle w:val=\"TableGrid8\"/><w:tblW w:w=\"14459\" w:type=\"dxa\"/><w:tblInd w:w=\"-157\" w:type=\"dxa\"/><w:tblBorders><w:top w:val=\"double\" w:sz=\"4\" w:space=\"0\" w:color=\"538135\" w:themeColor=\"accent6\" w:themeShade=\"BF\"/><w:left w:val=\"double\" w:sz=\"4\" w:space=\"0\" w:color=\"538135\" w:themeColor=\"accent6\" w:themeShade=\"BF\"/><w:bottom w:val=\"double\" w:sz=\"4\" w:space=\"0\" w:color=\"538135\" w:themeColor=\"accent6\" w:themeShade=\"BF\"/><w:right w:val=\"double\" w:sz=\"4\" w:space=\"0\" w:color=\"538135\" w:themeColor=\"accent6\" w:themeShade=\"BF\"/><w:insideH w:val=\"double\" w:sz=\"4\" w:space=\"0\" w:color=\"538135\" w:themeColor=\"accent6\" w:themeShade=\"BF\"/><w:insideV w:val=\"double\" w:sz=\"4\" w:space=\"0\" w:color=\"538135\" w:themeColor=\"accent6\" w:themeShade=\"BF\"/></w:tblBorders><w:tblLook w:val=\"04A0\" w:firstRow=\"1\" w:lastRow=\"0\" w:firstColumn=\"1\" w:lastColumn=\"0\" w:noHBand=\"0\" w:noVBand=\"1\"/></w:tblPr><w:tblGrid><w:gridCol w:w=\"4819\"/><w:gridCol w:w=\"852\"/><w:gridCol w:w=\"708\"/><w:gridCol w:w=\"8080\"/></w:tblGrid><w:tr w:rsidR=\"001F456E\" w:rsidRPr=\"009950C8\" w14:paraId=\"2045ACA0\" w14:textId=\"77777777\" w:rsidTr=\"00CB2FA3\"><w:tc><w:tcPr><w:tcW w:w=\"14459\" w:type=\"dxa\"/><w:gridSpan w:val=\"4\"/><w:shd w:val=\"clear\" w:color=\"auto\" w:fill=\"6A9937\"/></w:tcPr><w:p w14:paraId=\"0111BB28\" w14:textId=\"77777777\" w:rsidR=\"001F456E\" w:rsidRPr=\"009950C8\" w:rsidRDefault=\"001F456E\" w:rsidP=\"00CB2FA3\"><w:pPr><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"009950C8\"><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t>Actions required following audit:"
+  },
+  {
+    "type": "p",
+    "text": "<w:trPr><w:trHeight w:val=\"465\"/></w:trPr><w:tc><w:tcPr><w:tcW w:w=\"4819\" w:type=\"dxa\"/><w:shd w:val=\"clear\" w:color=\"auto\" w:fill=\"F2F2F2\" w:themeFill=\"background1\" w:themeFillShade=\"F2\"/></w:tcPr><w:p w14:paraId=\"64934B66\" w14:textId=\"77777777\" w:rsidR=\"001F456E\" w:rsidRPr=\"009950C8\" w:rsidRDefault=\"001F456E\" w:rsidP=\"00CB2FA3\"><w:r><w:t xml:space=\"preserve\">Have all actions been added to the Continuous Improvement Plan?"
+  },
+  {
+    "type": "p",
+    "text": "Yes"
+  },
+  {
+    "type": "p",
+    "text": "No"
+  },
+  {
+    "type": "p",
+    "text": "Signature:"
+  },
+  {
+    "type": "p",
+    "text": "<w:tblPr><w:tblStyle w:val=\"TableGrid7\"/><w:tblW w:w=\"14601\" w:type=\"dxa\"/><w:tblInd w:w=\"-147\" w:type=\"dxa\"/><w:tblLook w:val=\"04A0\" w:firstRow=\"1\" w:lastRow=\"0\" w:firstColumn=\"1\" w:lastColumn=\"0\" w:noHBand=\"0\" w:noVBand=\"1\"/></w:tblPr><w:tblGrid><w:gridCol w:w=\"3544\"/><w:gridCol w:w=\"3969\"/><w:gridCol w:w=\"5103\"/><w:gridCol w:w=\"1985\"/></w:tblGrid><w:tr w:rsidR=\"001F456E\" w:rsidRPr=\"009950C8\" w14:paraId=\"190EA7BE\" w14:textId=\"77777777\" w:rsidTr=\"00CB2FA3\"><w:tc><w:tcPr><w:tcW w:w=\"3544\" w:type=\"dxa\"/><w:shd w:val=\"clear\" w:color=\"auto\" w:fill=\"6A9937\"/></w:tcPr><w:p w14:paraId=\"74BE6018\" w14:textId=\"77777777\" w:rsidR=\"001F456E\" w:rsidRPr=\"009950C8\" w:rsidRDefault=\"001F456E\" w:rsidP=\"00CB2FA3\"><w:pPr><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr></w:pPr><w:r w:rsidRPr=\"009950C8\"><w:rPr><w:b/><w:bCs/><w:color w:val=\"FFFFFF\" w:themeColor=\"background1\"/></w:rPr><w:t xml:space=\"preserve\">Audit Completed by:"
+  },
+  {
+    "type": "p",
+    "text": "Position"
+  },
+  {
+    "type": "p",
+    "text": "Signature"
+  },
+  {
+    "type": "p",
+    "text": "Date"
+  }
+]

@@ -8,6 +8,8 @@ import AdminDashboard from './views/AdminDashboard';
 import HRDashboard from './views/HRDashboard';
 import Compliance from './views/Compliance';
 import RotaManagement from './views/RotaManagement';
+import RotaCalendar from './views/RotaCalendar';
+import DayNotes from './views/DayNotes';
 import Attendance from './views/Attendance';
 import Employees from './views/Employees';
 import Documents from './views/Documents';
@@ -101,6 +103,10 @@ const getRouteInfoFromPath = (path, isLoggedIn, currentRole) => {
       return { view: 'documents', role: currentRole };
     case 'rota':
       return { view: 'rota', role: currentRole };
+    case 'shift-planning':
+      return { view: 'shift-planning', role: currentRole };
+    case 'day-notes':
+      return { view: 'day-notes', role: currentRole };
     case 'attendance':
       return { view: 'attendance', role: currentRole };
     case 'leave':
@@ -230,7 +236,11 @@ const AppContent = () => {
       case 'documents':
         return <Documents />;
       case 'rota':
+        return <RotaCalendar />;
+      case 'shift-planning':
         return <RotaManagement />;
+      case 'day-notes':
+        return <DayNotes />;
       case 'attendance':
         return <Attendance />;
       case 'leave':
