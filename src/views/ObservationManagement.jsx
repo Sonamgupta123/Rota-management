@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useApp } from '../context/AppContext';
 import { 
   Eye, Plus, Calendar, Clock, MapPin, User, AlertCircle, FileText, CheckCircle, 
@@ -844,7 +845,7 @@ const ObservationManagement = () => {
       </div>
 
       {/* Modal Form */}
-      {isModalOpen && (
+      {isModalOpen && createPortal(
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 backdrop-blur-sm p-4">
           <div className="w-full max-w-2xl rounded-2xl bg-white dark:bg-slate-950 shadow-2xl p-6 border border-slate-200 dark:border-slate-800 max-h-[90vh] overflow-y-auto custom-scrollbar animate-slide-up">
             <h3 className="text-lg font-black text-slate-900 dark:text-white mb-4 flex items-center gap-2">
@@ -1044,7 +1045,8 @@ const ObservationManagement = () => {
               </div>
             </form>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );
