@@ -8,7 +8,9 @@ import {
   INITIAL_VISITORS,
   INITIAL_LEAVE,
   INITIAL_NOTIFICATIONS,
-  buildInitialDocuments
+  buildInitialDocuments,
+  MANDATORY_DOCS,
+  INITIAL_DAY_NOTES
 } from '../utils/mockData';
 
 const AppContext = createContext();
@@ -58,6 +60,7 @@ export const AppProvider = ({ children }) => {
   const [visitors, setVisitors] = useState(INITIAL_VISITORS);
   const [leave, setLeave] = useState(INITIAL_LEAVE);
   const [notifications, setNotifications] = useState(INITIAL_NOTIFICATIONS);
+  const [dayNotes, setDayNotes] = useState(INITIAL_DAY_NOTES);
 
   // Active Employee state (used when role is Employee)
   const [activeEmployeeId, setActiveEmployeeId] = useState('EMP-002');
@@ -120,6 +123,29 @@ export const AppProvider = ({ children }) => {
       alert(`⚠️ Safety Alert: ${employees.find(e => e.id === employeeId)?.name} has worked ${totalWeeklyShifts} shifts this week. Maximum safe working standard is 6 consecutive days.`);
     }
 
+    // Rule 3: Approved Leave Check
+    const dates = {
+      "Monday": "2026-06-01",
+      "Tuesday": "2026-06-02",
+      "Wednesday": "2026-06-03",
+      "Thursday": "2026-06-04",
+      "Friday": "2026-06-05",
+      "Saturday": "2026-06-06",
+      "Sunday": "2026-06-07"
+    };
+    const dateStr = dates[day];
+    if (dateStr && leave) {
+      const leaveOnDay = leave.find(l => 
+        l.employeeId === employeeId && 
+        l.status === 'Approved' && 
+        dateStr >= l.start && 
+        dateStr <= l.end
+      );
+      if (leaveOnDay) {
+        alert(`⚠️ Rota Compliance Alert: ${employees.find(e => e.id === employeeId)?.name} is on approved leave (${leaveOnDay.type}) on ${day} (${dateStr})!`);
+      }
+    }
+
     const newShift = {
       id: `S-${Date.now()}`,
       employeeId,
@@ -161,6 +187,30 @@ export const AppProvider = ({ children }) => {
       if (weeklyShiftsCount >= 6) {
         alert(`❌ Safety Rest Warning: You have already scheduled 6 shifts this week. Standard healthcare compliance protects you against working 7 consecutive days.`);
         return false;
+      }
+
+      // Approved Leave check on that day
+      const dates = {
+        "Monday": "2026-06-01",
+        "Tuesday": "2026-06-02",
+        "Wednesday": "2026-06-03",
+        "Thursday": "2026-06-04",
+        "Friday": "2026-06-05",
+        "Saturday": "2026-06-06",
+        "Sunday": "2026-06-07"
+      };
+      const dateStr = dates[openShift.day];
+      if (dateStr && leave) {
+        const leaveOnDay = leave.find(l => 
+          l.employeeId === employeeId && 
+          l.status === 'Approved' && 
+          dateStr >= l.start && 
+          dateStr <= l.end
+        );
+        if (leaveOnDay) {
+          alert(`❌ Compliance Warning: You are on approved leave (${leaveOnDay.type}) on ${openShift.day} (${dateStr}). You cannot claim shifts on this day.`);
+          return false;
+        }
       }
 
       // Add to shifts
@@ -436,14 +486,15 @@ export const AppProvider = ({ children }) => {
   };
 
   // Audits submit helper
-  const submitAuditResult = (auditId, score) => {
+  const submitAuditResult = (auditId, score, details = null) => {
     setAudits(prev => prev.map(aud => {
       if (aud.id === auditId) {
         return {
           ...aud,
           status: 'Completed',
           lastCompleted: new Date().toISOString().split('T')[0],
-          score: score
+          score: score,
+          details: details || aud.details
         };
       }
       return aud;
@@ -540,6 +591,48 @@ export const AppProvider = ({ children }) => {
     addNotification('success', `Document "${docName}" uploaded successfully`);
   };
 
+  // Day Notes helpers
+  const addDayNote = (day, noteData) => {
+    const now = new Date();
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const formattedDate = `${String(now.getDate()).padStart(2, '0')} ${months[now.getMonth()]} ${now.getFullYear()} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+
+    const newNote = {
+      id: `DN-${Date.now()}`,
+      day,
+      ...noteData,
+      createdDate: formattedDate
+    };
+    setDayNotes(prev => [...prev, newNote]);
+    addNotification('info', `New Day Note added for ${day}: "${noteData.title}"`);
+  };
+
+  const editDayNote = (noteId, updatedData) => {
+    const now = new Date();
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const formattedDate = `${String(now.getDate()).padStart(2, '0')} ${months[now.getMonth()]} ${now.getFullYear()} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+
+    setDayNotes(prev => prev.map(note => {
+      if (note.id === noteId) {
+        return {
+          ...note,
+          ...updatedData,
+          updatedDate: formattedDate
+        };
+      }
+      return note;
+    }));
+    addNotification('info', `Day Note updated: "${updatedData.title}"`);
+  };
+
+  const deleteDayNote = (noteId) => {
+    const note = dayNotes.find(n => n.id === noteId);
+    if (note) {
+      setDayNotes(prev => prev.filter(n => n.id !== noteId));
+      addNotification('warning', `Deleted Day Note for ${note.day}: "${note.title}"`);
+    }
+  };
+
   return (
     <AppContext.Provider value={{
       darkMode,
@@ -560,6 +653,7 @@ export const AppProvider = ({ children }) => {
       visitors,
       leave,
       notifications,
+      dayNotes,
       
       activeEmployeeId,
       setActiveEmployeeId,
@@ -588,7 +682,10 @@ export const AppProvider = ({ children }) => {
       approveLeaveRequest,
       rejectLeaveRequest,
       updateEmployee,
-      addEmployeeDocument
+      addEmployeeDocument,
+      addDayNote,
+      editDayNote,
+      deleteDayNote
     }}>
       {children}
     </AppContext.Provider>

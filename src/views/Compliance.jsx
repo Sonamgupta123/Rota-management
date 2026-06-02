@@ -1,5 +1,7 @@
+import logoImg from '../assets/logo.png';
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
+import { ALL_AUDIT_QUESTIONS } from '../utils/auditQuestions';
 import { 
   ShieldCheck, 
   AlertTriangle, 
@@ -156,13 +158,106 @@ const AUDIT_QUESTIONS = {
   ]
 };
 
+const DAILY_WALKAROUND_QUESTIONS = [
+  { id: 1, section: "Food & Fluid Charts", question: "Where a resident has a poor diet, it is clearly documented in the daily notes along with the actions taken." },
+  { id: 2, section: "Food & Fluid Charts", question: "Any special instructions are clearly written" },
+  { id: 3, section: "Food & Fluid Charts", question: "There is evidence that residents are offered snacks and supper. Residents are being toileted prior. Hands are being washed/wipes are being given" },
+  { id: 4, section: "Food & Fluid Charts", question: "There is evidence that suitable fortification is carried out when possible. e.g. full fat milk/cream etc" },
+  { id: 5, section: "Food & Fluid Charts", question: "If meals and snacks are declined this is also documented" },
+  { id: 6, section: "Food & Fluid Charts", question: "Is the resident weighed weekly to ensure weight is stabilising" },
+  { id: 7, section: "Food & Fluid Charts", question: "If residents weight isn’t stabilising, actions have been taken e.g. GP informed and referral to dietician" },
+
+  { id: 8, section: "Fluid Charts", question: "Where a resident has a poor fluid intake this is clearly written in the daily notes and actions taken are clear" },
+  { id: 9, section: "Fluid Charts", question: "Fluid charts record a running total and is total at every 24 hour period" },
+  { id: 10, section: "Fluid Charts", question: "Fluid charts document amount of fluid intake and if fluid was declined" },
+  { id: 11, section: "Fluid Charts", question: "There is a fluid chart for each resident who has a catheter in place to help identify any problems that may occur." },
+
+  { id: 12, section: "Repositioning chart", question: "Planned care states frequency of reposition required." },
+  { id: 13, section: "Repositioning chart", question: "Reposition chart clearly records that repositioning has taken place i.e. which position from & to." },
+  { id: 14, section: "Repositioning chart", question: "Appropriate comments are written as required and do not contain abbreviations" },
+
+  { id: 15, section: "Cream/Ointments Chart", question: "Creams are dated when opened" },
+  { id: 16, section: "Cream/Ointments Chart", question: "Are there separate tiles for barrier cream and moisturising creams?" },
+  { id: 17, section: "Cream/Ointments Chart", question: "Cream tiles are completed and any comments are written as required and do not contain abbreviations" },
+  { id: 18, section: "Cream/Ointments Chart", question: "Is it clear as to which area of the body each cream should be applied? (consider a body map if required)" },
+  { id: 19, section: "Cream/Ointments Chart", question: "Any special instructions are clearly written on the charts i.e. after bathing" },
+
+  { id: 20, section: "Behaviour/observation Charts", question: "Behaviour and observation charts are used appropriately (If in use within the home)" },
+  { id: 21, section: "Behaviour/observation Charts", question: "Behaviour & Observation charts have clear instructions for the reason and requested information is realistic and doesn’t pose any further undue stresses to the resident" },
+
+  { id: 22, section: "General Audit care notes/observations/checks", question: "Are pad checks being done sufficiently day/night? Are the checks documented?" },
+  { id: 23, section: "General Audit care notes/observations/checks", question: "Are residents being offered a choice? Is this documented?" },
+  { id: 24, section: "General Audit care notes/observations/checks", question: "Does variety of activities take place? Are residents happy?" },
+  { id: 25, section: "General Audit care notes/observations/checks", question: "Are residents being toileted prior to meal/snack time? Are they washing hands/using wipes before meal/snack time?" },
+  { id: 26, section: "General Audit care notes/observations/checks", question: "Residents in their room do they have a jug of juice/water of their choice in their room and a snack?" },
+  { id: 27, section: "General Audit care notes/observations/checks", question: "Are residents in their room spending at least 15 minutes a day with a carer to have a meaningful conversation?" }
+];
+
 const Compliance = () => {
   const { audits, submitAuditResult, scheduleAudit, employees, currentRole } = useApp();
   const [selectedAudit, setSelectedAudit] = useState(null); // Active audit being conducted
   const [auditAnswers, setAuditAnswers] = useState({});
   const [statusFilter, setStatusFilter] = useState('All'); // 'All', 'Completed', 'Pending', 'Overdue', 'Failed'
+
+  const generateAuditDetails = (audit) => {
+    if (!audit) return null;
+    if (audit.details) return audit.details;
+
+    const officer = employees.find(e => e.id === audit.officerId) || employees[0];
+    const sourceQuestions = ALL_AUDIT_QUESTIONS[audit.type] || 
+      (AUDIT_QUESTIONS[audit.type] || AUDIT_QUESTIONS["Daily Walkaround"]).map((qText, idx) => ({
+        id: idx + 1,
+        section: "General compliance",
+        question: qText
+      }));
+    
+    const targetScore = audit.score !== null ? audit.score : 95;
+    const totalQ = sourceQuestions.length;
+    const yesCount = Math.round((targetScore / 100) * totalQ);
+
+    const questions = sourceQuestions.map((q, idx) => {
+      const isYes = idx < yesCount;
+      return {
+        ...q,
+        doq: isYes ? "D: Daily notes verify compliance. O: Visually checked." : "D: Incomplete entry. O: Issue identified.",
+        comments: isYes ? "Adequate records observed, consistent documentation matching planned care." : "Some entries missing or documentation not matching planned care.",
+        status: isYes ? "YES" : "NO",
+        score: isYes ? "5/5" : "2/5",
+        actionPlan: isYes ? "" : "Re-educate staff on accurate documentation procedures."
+      };
+    });
+
+    const actionPlans = targetScore < 100 ? questions.filter(q => q.status === 'NO').map(q => ({
+      section: q.section || 'General compliance',
+      problem: 'Some entries missing or documentation not matching planned care.',
+      actions: 'Re-educate staff on accurate documentation procedures.',
+      responsible: 'Senior Care Assistant / Nurse',
+      targetDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+      reviewedBy: officer ? officer.name : 'Marcus Vance',
+      signedOff: audit.status === 'Completed' ? 'Signed off' : 'Pending'
+    })) : [];
+
+    return {
+      auditor: officer ? officer.name : 'Marcus Vance',
+      signed: officer ? officer.name.split(' ').map(n => n[0]).join('') : 'MV',
+      date: audit.lastCompleted !== 'Never' ? audit.lastCompleted : audit.scheduledDate,
+      questions,
+      actionPlans,
+      completedBy: officer ? officer.name : 'Marcus Vance',
+      designation: officer ? officer.title : 'Lead Compliance Officer',
+      signature: officer ? officer.name : 'Marcus Vance',
+      completionDate: audit.lastCompleted !== 'Never' ? audit.lastCompleted : audit.scheduledDate,
+      actualScore: targetScore
+    };
+  };
   const [selectedCategory, setSelectedCategory] = useState(null); // To filter by Category on the left
   const [scheduleModalOpen, setScheduleModalOpen] = useState(false); // To schedule new audit
+
+  // Custom Daily Walkaround / Records Audit state
+  const [dailyAuditForm, setDailyAuditForm] = useState(null);
+  const [activeAuditTab, setActiveAuditTab] = useState("Food & Fluid Charts");
+  const [viewReportAudit, setViewReportAudit] = useState(null);
+  const [viewReportTab, setViewReportTab] = useState("Food & Fluid Charts");
 
   // Form states for scheduling a new audit
   const [newAuditType, setNewAuditType] = useState('Daily Walkaround');
@@ -190,30 +285,62 @@ const Compliance = () => {
 
   const handleStartAudit = (audit) => {
     setSelectedAudit(audit);
-    const questions = AUDIT_QUESTIONS[audit.type] || AUDIT_QUESTIONS["Daily Walkaround"];
-    const initialAnswers = {};
-    questions.forEach((q, i) => {
-      initialAnswers[i] = true;
-    });
-    setAuditAnswers(initialAnswers);
-  };
+    const officer = employees.find(e => e.id === audit.officerId) || employees[0];
+    const sourceQuestions = ALL_AUDIT_QUESTIONS[audit.type] || 
+      (AUDIT_QUESTIONS[audit.type] || AUDIT_QUESTIONS["Daily Walkaround"]).map((qText, idx) => ({
+        id: idx + 1,
+        section: "General compliance",
+        question: qText
+      }));
 
-  const handleAnswerToggle = (idx, value) => {
-    setAuditAnswers(prev => ({
-      ...prev,
-      [idx]: value
-    }));
+    const questions = sourceQuestions.map(q => {
+      if (audit.type === 'Daily Walkaround' && q.id === 1) {
+        return {
+          ...q,
+          doq: "D: Daily notes reviewed for Steven Gaines O: Food chart incomplete. Q: Staff unsure of escalation process.",
+          comments: "Resident’s poor intake was not consistently documented. Food & fluid chart had missing entries and no evidence of escalation to GP.",
+          status: "NO",
+          score: "2/5",
+          actionPlan: "Re-educate staff on accurate documentation and escalation procedures. Complete food/fluid charts fully."
+        };
+      }
+      return {
+        ...q,
+        doq: "",
+        comments: "",
+        status: "YES",
+        score: "5/5",
+        actionPlan: ""
+      };
+    });
+
+    const actionPlans = audit.type === 'Daily Walkaround' ? [
+      { section: 'Food & Fluid Charts', problem: 'Resident’s poor intake was not consistently documented. Food & fluid chart had missing entries and no evidence of escalation to GP.', actions: 'Re-educate staff on accurate documentation and escalation procedures. Complete food/fluid charts fully.', responsible: 'Senior Care Assistant / Nurse', targetDate: '2026-06-15', reviewedBy: 'Marcus Vance', signedOff: 'Pending' }
+    ] : [];
+
+    setDailyAuditForm({
+      auditor: officer ? officer.name : '',
+      signed: '',
+      date: audit.scheduledDate === 'Immediate' ? new Date().toISOString().split('T')[0] : audit.scheduledDate,
+      questions,
+      actionPlans,
+      completedBy: officer ? officer.name : '',
+      designation: officer ? officer.title : '',
+      signature: '',
+      completionDate: new Date().toISOString().split('T')[0]
+    });
   };
 
   const handleSubmitAudit = (e) => {
     e.preventDefault();
-    const questions = AUDIT_QUESTIONS[selectedAudit.type] || AUDIT_QUESTIONS["Daily Walkaround"];
-    const totalQuestions = questions.length;
-    const yesAnswers = Object.values(auditAnswers).filter(Boolean).length;
-    const score = Math.round((yesAnswers / totalQuestions) * 100);
+    const totalQuestions = dailyAuditForm.questions.length;
+    const naCount = dailyAuditForm.questions.filter(q => q.status === 'N/A').length;
+    const totalEvaluated = totalQuestions - naCount;
+    const score = totalEvaluated > 0 ? Math.round((dailyAuditForm.questions.filter(q => q.status === 'YES').length / totalEvaluated) * 100) : 100;
 
-    submitAuditResult(selectedAudit.id, score);
+    submitAuditResult(selectedAudit.id, score, dailyAuditForm);
     setSelectedAudit(null);
+    setDailyAuditForm(null);
   };
 
   // Handle scheduling submit
@@ -267,86 +394,625 @@ const Compliance = () => {
 
       {/* Interactive Audit Sheet Form overlays when conducting audit */}
       {selectedAudit ? (
-        <div className="max-w-2xl mx-auto glass-card rounded-3xl p-6 md:p-8 space-y-6 relative animate-slide-up bg-white">
-          <div className="flex justify-between items-start border-b border-slate-100 dark:border-slate-850 pb-3">
-            <div>
-              <span className="px-2.5 py-0.5 rounded-full bg-brand-50 border border-brand-200 text-[10px] font-bold text-brand-700 dark:bg-brand-950/40 dark:text-brand-400">
-                Live Session Audit
-              </span>
-              <h3 className="text-xl font-black mt-2 text-slate-900 dark:text-white">{selectedAudit.type}</h3>
-              <p className="text-[11px] text-slate-400 mt-0.5 font-semibold">ID: {selectedAudit.id} | Date: {selectedAudit.scheduledDate}</p>
+        <div className="max-w-5xl mx-auto rounded-xl p-4 md:p-6 space-y-6 relative animate-slide-up bg-white text-black shadow-lg border border-slate-200">
+          {/* Header / Brand Flex row */}
+          <div className="flex justify-between items-start border-b-2 border-black pb-3 mb-4 select-none">
+            <div className="flex-1 text-center">
+              <h2 className="text-lg md:text-xl font-bold tracking-wide uppercase text-black">
+                Quality & Compliance – The Swan Care Home {selectedAudit.type}
+              </h2>
             </div>
-            <button
-              onClick={() => setSelectedAudit(null)}
-              className="text-xs font-bold text-slate-400 hover:text-rose-600 transition-colors"
-            >
-              Cancel Audit
-            </button>
+            <div className="shrink-0 ml-4 flex flex-col items-end gap-1">
+              <img src={logoImg} alt="AS CARE" className="h-10 md:h-12 object-contain" />
+            </div>
           </div>
 
-          <form onSubmit={handleSubmitAudit} className="space-y-5 text-xs">
-            <div className="space-y-4">
-              {(AUDIT_QUESTIONS[selectedAudit.type] || AUDIT_QUESTIONS["Daily Walkaround"]).map((q, idx) => (
-                <div 
-                  key={idx} 
-                  className="rounded-2xl border border-slate-100 dark:border-slate-800 p-4 bg-slate-50/50 dark:bg-slate-900/30 space-y-3"
-                >
-                  <p className="font-bold text-slate-850 dark:text-slate-100 text-sm leading-relaxed">{q}</p>
-                  
-                  <div className="flex gap-4 font-bold">
-                    <label className="flex items-center gap-1.5 cursor-pointer group">
-                      <input
-                        type="radio"
-                        name={`q-${idx}`}
-                        checked={auditAnswers[idx] === true}
-                        onChange={() => handleAnswerToggle(idx, true)}
-                        className="h-4.5 w-4.5 accent-emerald-600"
-                      />
-                      <span className="text-emerald-650 group-hover:text-emerald-500 transition-colors">YES / Pass</span>
-                    </label>
-                    
-                    <label className="flex items-center gap-1.5 cursor-pointer group">
-                      <input
-                        type="radio"
-                        name={`q-${idx}`}
-                        checked={auditAnswers[idx] === false}
-                        onChange={() => handleAnswerToggle(idx, false)}
-                        className="h-4.5 w-4.5 accent-rose-600"
-                      />
-                      <span className="text-rose-650 group-hover:text-rose-500 transition-colors">NO / Fail</span>
-                    </label>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="bg-emerald-50/60 dark:bg-emerald-950/20 border border-emerald-100 dark:border-emerald-900/40 rounded-2xl p-4 flex gap-3 text-emerald-800 dark:text-emerald-400">
-              <CheckCircle className="h-5 w-5 text-emerald-500 shrink-0" />
-              <div>
-                <span className="font-bold block text-slate-900 dark:text-white">Submit Compliance Report</span>
-                <p className="text-[10px] leading-relaxed mt-0.5 font-medium">
-                  Submitting this audit registers the results immediately inside reports. Unresolved failures automatically raise high priority notifications to Manager Dashboards.
-                </p>
+            {/* Header Details Table Grid */}
+            <div className="w-full border border-black grid grid-cols-1 sm:grid-cols-4 text-xs font-semibold select-none mb-6">
+              <div className="p-2 border-b sm:border-b-0 sm:border-r border-black flex items-center gap-2 sm:col-span-2">
+                <span className="text-black">Auditor:</span>
+                <input 
+                  type="text" 
+                  value={dailyAuditForm.auditor} 
+                  onChange={(e) => setDailyAuditForm({ ...dailyAuditForm, auditor: e.target.value })} 
+                  className="flex-1 bg-transparent border-none outline-none font-bold text-[#c00000] text-xs" 
+                  placeholder="Name of Auditor"
+                />
+              </div>
+              <div className="p-2 border-b sm:border-b-0 sm:border-r border-black flex items-center gap-2">
+                <span className="text-black">Signed:</span>
+                <input 
+                  type="text" 
+                  value={dailyAuditForm.signed} 
+                  onChange={(e) => setDailyAuditForm({ ...dailyAuditForm, signed: e.target.value })} 
+                  className="flex-1 bg-transparent border-none outline-none font-bold text-[#c00000] text-xs" 
+                  placeholder="Initials"
+                />
+              </div>
+              <div className="p-2 flex items-center gap-2">
+                <span className="text-black">Date:</span>
+                <input 
+                  type="date" 
+                  value={dailyAuditForm.date} 
+                  onChange={(e) => setDailyAuditForm({ ...dailyAuditForm, date: e.target.value })} 
+                  className="flex-1 bg-transparent border-none outline-none font-bold text-[#c00000] text-xs" 
+                />
               </div>
             </div>
 
-            <div className="flex justify-end gap-2 pt-2 border-t border-slate-100 dark:border-slate-800">
-              <button
-                type="button"
-                onClick={() => setSelectedAudit(null)}
-                className="h-9 px-4 rounded-xl border border-slate-200 hover:bg-slate-50 dark:border-slate-805 font-bold"
+            {/* Continuous document table */}
+            <form onSubmit={handleSubmitAudit} className="space-y-6 text-xs">
+              <div className="overflow-x-auto border-2 border-black rounded-sm">
+                <table className="w-full text-left border-collapse min-w-[900px] text-black">
+                  <tbody className="divide-y divide-black bg-white">
+                    {Array.from(new Set(dailyAuditForm.questions.map(q => q.section))).map(section => (
+                      <React.Fragment key={section}>
+                        {/* Repeated Green Header Row for Each Section */}
+                        <tr className="bg-[#92d050] text-black border-t border-black font-extrabold select-none">
+                          <th className="p-2 border border-black text-center align-middle w-1/4">
+                            <div className="font-extrabold text-xs">Audit Question</div>
+                            <div className="underline font-bold mt-1 text-xs">{section}</div>
+                          </th>
+                          <th className="p-2 border border-black text-center align-middle text-xs w-1/5 leading-tight">
+                            Documentation (D)<br />Observation (O)<br />Questioning (Q)
+                          </th>
+                          <th className="p-2 border border-black text-center align-middle text-xs w-1/5 leading-tight">
+                            Comments
+                          </th>
+                          <th className="p-2 border border-black text-center align-middle text-xs w-[120px] leading-tight">
+                            Yes/No/<br />Not Applicable<br />(N/A)
+                          </th>
+                          <th className="p-2 border border-black text-center align-middle text-xs w-16 leading-tight">
+                            Score
+                          </th>
+                          <th className="p-2 border border-black text-center align-middle text-xs w-1/5 leading-tight">
+                            Action Plan
+                          </th>
+                        </tr>
+
+                        {dailyAuditForm.questions.filter(q => q.section === section).map(q => {
+                          const globalIdx = dailyAuditForm.questions.findIndex(item => item.id === q.id);
+                          return (
+                            <tr key={q.id} className="hover:bg-slate-50 text-[11px] divide-x divide-black border border-black">
+                              <td className="p-2 align-top font-bold text-black border-r border-black">
+                                <span>{q.id}. {q.question}</span>
+                              </td>
+                              <td className="p-1 align-top border-r border-black bg-transparent">
+                                <textarea
+                                  rows="4"
+                                  value={q.doq}
+                                  onChange={(e) => {
+                                    const updatedQ = [...dailyAuditForm.questions];
+                                    updatedQ[globalIdx].doq = e.target.value;
+                                    setDailyAuditForm({ ...dailyAuditForm, questions: updatedQ });
+                                  }}
+                                  className="w-full h-full min-h-[70px] p-1 bg-transparent border-none outline-none resize-none text-[11px] font-bold text-[#c00000] focus:ring-0"
+                                  placeholder="D: Documentation... O: Observation... Q: Questioning..."
+                                />
+                              </td>
+                              <td className="p-1 align-top border-r border-black bg-transparent">
+                                <textarea
+                                  rows="4"
+                                  value={q.comments}
+                                  onChange={(e) => {
+                                    const updatedQ = [...dailyAuditForm.questions];
+                                    updatedQ[globalIdx].comments = e.target.value;
+                                    setDailyAuditForm({ ...dailyAuditForm, questions: updatedQ });
+                                  }}
+                                  className="w-full h-full min-h-[70px] p-1 bg-transparent border-none outline-none resize-none text-[11px] font-bold text-[#c00000] focus:ring-0"
+                                  placeholder="Enter comments..."
+                                />
+                              </td>
+                              <td className="p-1 align-top border-r border-black text-center justify-center bg-transparent">
+                                <select
+                                  value={q.status}
+                                  onChange={(e) => {
+                                    const updatedQ = [...dailyAuditForm.questions];
+                                    updatedQ[globalIdx].status = e.target.value;
+                                    setDailyAuditForm({ ...dailyAuditForm, questions: updatedQ });
+                                  }}
+                                  className="w-full text-center bg-transparent border-none outline-none font-extrabold text-[11px] text-[#c00000] cursor-pointer mt-2"
+                                >
+                                  <option value="YES" className="text-emerald-700 font-bold bg-white">YES</option>
+                                  <option value="NO" className="text-rose-700 font-bold bg-white">NO</option>
+                                  <option value="N/A" className="text-slate-600 font-bold bg-white">N/A</option>
+                                </select>
+                              </td>
+                              <td className="p-1 align-top border-r border-black text-center bg-transparent">
+                                <input
+                                  type="text"
+                                  value={q.score}
+                                  onChange={(e) => {
+                                    const updatedQ = [...dailyAuditForm.questions];
+                                    updatedQ[globalIdx].score = e.target.value;
+                                    setDailyAuditForm({ ...dailyAuditForm, questions: updatedQ });
+                                  }}
+                                  className="w-full bg-transparent border-none outline-none text-center font-extrabold text-[11px] text-[#c00000] mt-2"
+                                  placeholder="Score"
+                                />
+                              </td>
+                              <td className="p-1 align-top bg-transparent">
+                                <textarea
+                                  rows="4"
+                                  value={q.actionPlan}
+                                  onChange={(e) => {
+                                    const updatedQ = [...dailyAuditForm.questions];
+                                    updatedQ[globalIdx].actionPlan = e.target.value;
+                                    setDailyAuditForm({ ...dailyAuditForm, questions: updatedQ });
+                                  }}
+                                  className="w-full h-full min-h-[70px] p-1 bg-transparent border-none outline-none resize-none text-[11px] font-bold text-[#c00000] focus:ring-0"
+                                  placeholder="Enter action plan..."
+                                />
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </React.Fragment>
+                    ))}
+
+                    {/* Score summary rows inside the table */}
+                    <tr className="border-t-2 border-black bg-slate-50 font-bold select-none text-[11px]">
+                      <td colSpan="4" className="p-2 font-bold text-right border-r border-black text-black">Possible Score</td>
+                      <td colSpan="2" className="p-2 font-extrabold text-left text-black">{dailyAuditForm.questions.length}</td>
+                    </tr>
+                    <tr className="border-t border-black bg-white font-bold select-none text-[11px]">
+                      <td colSpan="4" className="p-2 font-bold text-right border-r border-black text-black">N/A</td>
+                      <td colSpan="2" className="p-2 font-extrabold text-left text-[#c00000]">
+                        {dailyAuditForm.questions.filter(q => q.status === 'N/A').length}
+                      </td>
+                    </tr>
+                    <tr className="border-t border-black bg-slate-50 font-bold select-none text-[11px]">
+                      <td colSpan="4" className="p-2 font-bold text-right border-r border-black text-black">Homes possible Score</td>
+                      <td colSpan="2" className="p-2 font-extrabold text-left text-indigo-700">
+                        {dailyAuditForm.questions.length - dailyAuditForm.questions.filter(q => q.status === 'N/A').length}
+                      </td>
+                    </tr>
+                    <tr className="border-t border-black bg-[#e2f0d9]/60 font-bold select-none text-[11px]">
+                      <td colSpan="4" className="p-2 font-bold text-right border-r border-black text-black">Actual Score</td>
+                      <td colSpan="2" className="p-2 font-extrabold text-left text-[#c00000] text-sm">
+                        {(() => {
+                          const yesCount = dailyAuditForm.questions.filter(q => q.status === 'YES').length;
+                          const naCount = dailyAuditForm.questions.filter(q => q.status === 'N/A').length;
+                          const totalEvaluated = dailyAuditForm.questions.length - naCount;
+                          return totalEvaluated > 0 ? Math.round((yesCount / totalEvaluated) * 100) : 100;
+                        })()}%
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Action Plan Table */}
+              <div className="overflow-x-auto border-2 border-black rounded-sm mt-8 select-none">
+                <table className="w-full text-left border-collapse min-w-[900px] text-black">
+                  <thead>
+                    <tr className="bg-[#92d050] text-black border-b-2 border-black font-extrabold">
+                      <th colSpan="8" className="p-2 text-center text-sm uppercase tracking-wider font-extrabold border-b border-black">
+                        Action Plan
+                      </th>
+                    </tr>
+                    <tr className="bg-[#92d050] text-black border-b border-black text-center font-bold text-[10px] sm:text-xs">
+                      <th className="p-2 border-r border-black w-[12%]">Section</th>
+                      <th className="p-2 border-r border-black w-[20%]">Problem Identified</th>
+                      <th className="p-2 border-r border-black w-[20%]">Actions</th>
+                      <th className="p-2 border-r border-black w-[13%]">Responsible Person</th>
+                      <th className="p-2 border-r border-black w-[10%]">Date to be achieved</th>
+                      <th className="p-2 border-r border-black w-[10%]">Reviewed by</th>
+                      <th className="p-2 border-r border-black w-[12%]">Signed & Dated as completed</th>
+                      <th className="p-2 w-8 text-center bg-[#92d050]"></th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-black font-semibold text-black bg-white">
+                    {dailyAuditForm.actionPlans.map((ap, apIdx) => (
+                      <tr key={apIdx} className="hover:bg-slate-50 text-xs">
+                        <td className="p-1 border-r border-black align-middle">
+                          <input 
+                            type="text" 
+                            value={ap.section} 
+                            onChange={e => { const u = [...dailyAuditForm.actionPlans]; u[apIdx].section = e.target.value; setDailyAuditForm({...dailyAuditForm, actionPlans: u}); }} 
+                            className="w-full p-1 bg-transparent border-none outline-none font-bold text-[#c00000] text-xs" 
+                            placeholder="e.g. Fluid Charts"
+                          />
+                        </td>
+                        <td className="p-1 border-r border-black align-middle">
+                          <textarea 
+                            rows="2"
+                            value={ap.problem} 
+                            onChange={e => { const u = [...dailyAuditForm.actionPlans]; u[apIdx].problem = e.target.value; setDailyAuditForm({...dailyAuditForm, actionPlans: u}); }} 
+                            className="w-full p-1 bg-transparent border-none outline-none font-bold text-[#c00000] text-xs resize-none" 
+                            placeholder="Describe problem..."
+                          />
+                        </td>
+                        <td className="p-1 border-r border-black align-middle">
+                          <textarea 
+                            rows="2"
+                            value={ap.actions} 
+                            onChange={e => { const u = [...dailyAuditForm.actionPlans]; u[apIdx].actions = e.target.value; setDailyAuditForm({...dailyAuditForm, actionPlans: u}); }} 
+                            className="w-full p-1 bg-transparent border-none outline-none font-bold text-[#c00000] text-xs resize-none" 
+                            placeholder="Describe actions required..."
+                          />
+                        </td>
+                        <td className="p-1 border-r border-black align-middle">
+                          <input 
+                            type="text" 
+                            value={ap.responsible} 
+                            onChange={e => { const u = [...dailyAuditForm.actionPlans]; u[apIdx].responsible = e.target.value; setDailyAuditForm({...dailyAuditForm, actionPlans: u}); }} 
+                            className="w-full p-1 bg-transparent border-none outline-none font-bold text-[#c00000] text-xs text-center" 
+                            placeholder="Responsible"
+                          />
+                        </td>
+                        <td className="p-1 border-r border-black align-middle text-center">
+                          <input 
+                            type="date" 
+                            value={ap.targetDate} 
+                            onChange={e => { const u = [...dailyAuditForm.actionPlans]; u[apIdx].targetDate = e.target.value; setDailyAuditForm({...dailyAuditForm, actionPlans: u}); }} 
+                            className="w-full p-1 bg-transparent border-none outline-none font-bold text-[#c00000] text-[10px]" 
+                          />
+                        </td>
+                        <td className="p-1 border-r border-black align-middle">
+                          <input 
+                            type="text" 
+                            value={ap.reviewedBy} 
+                            onChange={e => { const u = [...dailyAuditForm.actionPlans]; u[apIdx].reviewedBy = e.target.value; setDailyAuditForm({...dailyAuditForm, actionPlans: u}); }} 
+                            className="w-full p-1 bg-transparent border-none outline-none font-bold text-[#c00000] text-xs text-center" 
+                            placeholder="Reviewer"
+                          />
+                        </td>
+                        <td className="p-1 border-r border-black align-middle">
+                          <input 
+                            type="text" 
+                            value={ap.signedOff} 
+                            onChange={e => { const u = [...dailyAuditForm.actionPlans]; u[apIdx].signedOff = e.target.value; setDailyAuditForm({...dailyAuditForm, actionPlans: u}); }} 
+                            className="w-full p-1 bg-transparent border-none outline-none font-bold text-[#c00000] text-xs text-center" 
+                            placeholder="Signature/Date"
+                          />
+                        </td>
+                        <td className="p-1 text-center align-middle bg-white">
+                          <button 
+                            type="button" 
+                            onClick={() => { const u = dailyAuditForm.actionPlans.filter((_, i) => i !== apIdx); setDailyAuditForm({...dailyAuditForm, actionPlans: u}); }} 
+                            className="text-red-500 hover:text-red-700 font-bold text-base transition-colors"
+                          >
+                            ×
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                    <tr className="bg-white">
+                      <td colSpan="8" className="p-2 text-center bg-slate-50/50 hover:bg-slate-100 transition-colors">
+                        <button 
+                          type="button" 
+                          onClick={() => setDailyAuditForm({...dailyAuditForm, actionPlans: [...dailyAuditForm.actionPlans, {section:'', problem:'', actions:'', responsible:'', targetDate:'', reviewedBy:'', signedOff:''}]})} 
+                          className="text-brand-700 hover:text-brand-900 font-black text-xs flex items-center justify-center gap-1 mx-auto"
+                        >
+                          <Plus className="h-3 w-3" /> Add Action Item Row
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Completion Sign-Off Footer */}
+              <div className="mt-8 border border-black p-4 bg-white text-black font-semibold text-xs space-y-4 rounded-sm select-none">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="flex items-end gap-1">
+                    <span className="shrink-0 text-black">Completed by:</span>
+                    <input 
+                      type="text" 
+                      value={dailyAuditForm.completedBy} 
+                      onChange={e => setDailyAuditForm({...dailyAuditForm, completedBy: e.target.value})} 
+                      className="flex-1 bg-transparent border-b border-dashed border-slate-500 outline-none px-1 font-bold text-[#c00000] text-xs" 
+                    />
+                  </div>
+                  <div className="flex items-end gap-1">
+                    <span className="shrink-0 text-black">Designation:</span>
+                    <input 
+                      type="text" 
+                      value={dailyAuditForm.designation} 
+                      onChange={e => setDailyAuditForm({...dailyAuditForm, designation: e.target.value})} 
+                      className="flex-1 bg-transparent border-b border-dashed border-slate-500 outline-none px-1 font-bold text-[#c00000] text-xs" 
+                    />
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                  <div className="flex items-end gap-1">
+                    <span className="shrink-0 text-black">Signature:</span>
+                    <input 
+                      type="text" 
+                      value={dailyAuditForm.signature} 
+                      onChange={e => setDailyAuditForm({...dailyAuditForm, signature: e.target.value})} 
+                      className="flex-1 bg-transparent border-b border-dashed border-slate-500 outline-none px-1 font-bold text-[#c00000] text-xs italic" 
+                      placeholder="Type signature"
+                    />
+                  </div>
+                  <div className="flex items-end gap-1">
+                    <span className="shrink-0 text-black">Date:</span>
+                    <input 
+                      type="date" 
+                      value={dailyAuditForm.completionDate} 
+                      onChange={e => setDailyAuditForm({...dailyAuditForm, completionDate: e.target.value})} 
+                      className="flex-1 bg-transparent border-b border-dashed border-slate-500 outline-none px-1 font-bold text-[#c00000] text-xs" 
+                    />
+                  </div>
+                </div>
+              </div>
+                   {/* Submit Buttons */}
+            <div className="flex justify-between items-center pt-6 border-t border-slate-200">
+              <button 
+                type="button" 
+                onClick={() => { setSelectedAudit(null); setDailyAuditForm(null); }} 
+                className="h-10 px-6 rounded-xl border border-slate-300 font-extrabold text-slate-700 bg-white hover:bg-slate-50 hover:text-black transition-all active:scale-[0.98]"
               >
                 Go Back
               </button>
-              <button
-                type="submit"
-                className="h-9 px-5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold flex items-center gap-1 shadow-md shadow-brand-500/10 active:scale-[0.98]"
+              <button 
+                type="submit" 
+                className="h-10 px-8 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-extrabold flex items-center gap-1 shadow-md shadow-brand-500/10 active:scale-[0.98] transition-all"
               >
+                <CheckCircle className="h-4 w-4" />
                 <span>Save & Submit Audit</span>
-                <ArrowRight className="h-4 w-4" />
               </button>
             </div>
           </form>
+        </div>
+      ) : viewReportAudit ? (
+        <div className="max-w-5xl mx-auto rounded-xl p-4 md:p-6 space-y-6 relative animate-slide-up bg-white text-black shadow-lg border border-slate-200">
+          
+          {/* Header info */}
+          <div className="flex justify-between items-start border-b pb-3 border-slate-200 mb-2 select-none">
+            <div>
+              <span className={`px-2.5 py-0.5 rounded-full border text-[10px] font-bold ${
+                (viewReportAudit.status === 'Completed' && viewReportAudit.score < 90)
+                  ? 'bg-rose-50 text-rose-700 border-rose-250 dark:bg-rose-500/10 dark:text-rose-455'
+                  : getStatusBadge(viewReportAudit.status)
+              }`}>
+                {(viewReportAudit.status === 'Completed' && viewReportAudit.score < 90) ? 'Failed' : viewReportAudit.status} Audit
+              </span>
+              <h3 className="text-xl font-black mt-2 text-slate-900">{viewReportAudit.type} Report</h3>
+              <p className="text-[11px] text-slate-405 font-bold mt-0.5">
+                Audit ID: {viewReportAudit.id} | {viewReportAudit.status === 'Completed' ? `Completed Date: ${viewReportAudit.lastCompleted}` : `Target Date: ${viewReportAudit.scheduledDate}`}
+              </p>
+            </div>
+            <button
+              onClick={() => { setViewReportAudit(null); }}
+              className="text-xs font-bold text-slate-400 hover:text-slate-655 transition-colors"
+            >
+              Close Report
+            </button>
+          </div>
+
+          {(() => {
+            const details = generateAuditDetails(viewReportAudit);
+            const officer = employees.find(e => e.id === viewReportAudit.officerId) || employees[0];
+
+            return (
+              <div className="space-y-6 text-black">
+                
+                {/* Brand Header */}
+                <div className="flex justify-between items-start border-b-2 border-black pb-3 mb-4 select-none">
+                  <div className="flex-1 text-center">
+                    <h2 className="text-lg md:text-xl font-bold tracking-wide uppercase text-black">
+                      Quality & Compliance – The Swan Care Home {viewReportAudit.type}
+                    </h2>
+                  </div>
+                  <div className="shrink-0 ml-4 flex flex-col items-end gap-1">
+                    <img src={logoImg} alt="AS CARE" className="h-10 md:h-12 object-contain" />
+                  </div>
+                </div>
+
+                {/* Auditor / Officer Profile Card */}
+                <div className="bg-slate-50 rounded-xl p-4 border border-slate-200 flex flex-col sm:flex-row gap-4 items-center justify-between select-none">
+                  <div className="flex items-center gap-3">
+                    <img 
+                      src={officer.photo} 
+                      alt={officer.name} 
+                      className="h-12 w-12 rounded-full object-cover border border-slate-300 shrink-0" 
+                    />
+                    <div>
+                      <span className="text-[9px] font-extrabold uppercase tracking-wider text-[#2e6559]">Auditor / Officer Details</span>
+                      <h4 className="text-xs font-bold text-slate-800 leading-none">{officer.name}</h4>
+                      <p className="text-[10px] text-slate-505 font-semibold mt-0.5">{officer.title}</p>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-x-6 gap-y-1.5 text-[10px] text-slate-650 font-semibold w-full sm:w-auto border-t sm:border-t-0 sm:border-l border-slate-200 pt-3 sm:pt-0 sm:pl-6">
+                    <div>
+                      <span className="text-[8px] block text-slate-400 font-bold uppercase">Email Address</span>
+                      <a href={`mailto:${officer.email}`} className="text-[#2e6559] hover:underline font-bold">{officer.email}</a>
+                    </div>
+                    <div>
+                      <span className="text-[8px] block text-slate-400 font-bold uppercase">Contact Number</span>
+                      <span className="text-slate-800 font-bold">{officer.phone}</span>
+                    </div>
+                    <div>
+                      <span className="text-[8px] block text-slate-400 font-bold uppercase">User Role</span>
+                      <span className="text-slate-800 font-bold">{officer.role}</span>
+                    </div>
+                    <div>
+                      <span className="text-[8px] block text-slate-400 font-bold uppercase">Start Date</span>
+                      <span className="text-slate-800 font-bold">{officer.startDate}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Header Details Table Grid */}
+                <div className="w-full border border-black grid grid-cols-1 sm:grid-cols-4 text-xs font-semibold select-none mb-6">
+                  <div className="p-2 border-b sm:border-b-0 sm:border-r border-black flex items-center gap-2 sm:col-span-2">
+                    <span className="text-black">Auditor:</span>
+                    <p className="font-bold text-[#c00000] text-xs">{details.auditor}</p>
+                  </div>
+                  <div className="p-2 border-b sm:border-b-0 sm:border-r border-black flex items-center gap-2">
+                    <span className="text-black">Signed:</span>
+                    <p className="font-bold text-[#c00000] text-xs">{details.signed}</p>
+                  </div>
+                  <div className="p-2 flex items-center gap-2">
+                    <span className="text-black">Date:</span>
+                    <p className="font-bold text-[#c00000] text-xs">{details.date}</p>
+                  </div>
+                </div>
+
+                {/* Document-style continuous form (Read-Only) */}
+                <div className="overflow-x-auto border-2 border-black rounded-sm">
+                  <table className="w-full text-left border-collapse min-w-[900px] text-black">
+                    <tbody className="divide-y divide-black bg-white">
+                      {Array.from(new Set(details.questions.map(q => q.section))).map(section => (
+                        <React.Fragment key={section}>
+                          {/* Repeated Green Header Row for Each Section */}
+                          <tr className="bg-[#92d050] text-black border-t border-black font-extrabold select-none">
+                            <th className="p-2 border border-black text-center align-middle w-1/4">
+                              <div className="font-extrabold text-xs">Standard</div>
+                              <div className="underline font-bold mt-1 text-xs">{section}</div>
+                            </th>
+                            <th className="p-2 border border-black text-center align-middle text-xs w-12 leading-tight">
+                              Yes
+                            </th>
+                            <th className="p-2 border border-black text-center align-middle text-xs w-12 leading-tight">
+                              No
+                            </th>
+                            <th className="p-2 border border-black text-center align-middle text-xs w-12 leading-tight">
+                              N/A
+                            </th>
+                            <th className="p-2 border border-black text-center align-middle text-xs w-[25%] leading-tight">
+                              Notes / Guidance
+                            </th>
+                            <th className="p-2 border border-black text-center align-middle text-xs w-[25%] leading-tight">
+                              Comments / Findings
+                            </th>
+                          </tr>
+
+                          {details.questions.filter(q => q.section === section).map(q => (
+                            <tr key={q.id} className="hover:bg-slate-50 text-[11px] divide-x divide-black border border-black">
+                              <td className="p-2 align-top font-bold text-black border-r border-black">
+                                <span>{q.id}. {q.question}</span>
+                              </td>
+                              <td className="p-2 align-top border-r border-black text-center font-bold text-lg text-[#c00000]">
+                                {q.status === 'YES' ? '✔' : ''}
+                              </td>
+                              <td className="p-2 align-top border-r border-black text-center font-bold text-lg text-[#c00000]">
+                                {q.status === 'NO' ? '✔' : ''}
+                              </td>
+                              <td className="p-2 align-top border-r border-black text-center font-bold text-lg text-[#c00000]">
+                                {q.status === 'N/A' ? '✔' : ''}
+                              </td>
+                              <td className="p-2 align-top border-r border-black text-[#c00000] font-bold whitespace-pre-line">
+                                {q.notes || q.doq || "—"}
+                              </td>
+                              <td className="p-2 align-top text-[#c00000] font-bold whitespace-pre-line">
+                                {q.comments || "—"}
+                              </td>
+                            </tr>
+                          ))}
+                        </React.Fragment>
+                      ))}
+                      
+                      {/* Score summary rows */}
+                      <tr className="border-t-2 border-black bg-slate-50 font-bold select-none text-[11px]">
+                        <td colSpan="4" className="p-2 font-bold text-right border-r border-black text-black">Possible Score</td>
+                        <td colSpan="2" className="p-2 font-extrabold text-left text-black">{details.questions.length}</td>
+                      </tr>
+                      <tr className="border-t border-black bg-white font-bold select-none text-[11px]">
+                        <td colSpan="4" className="p-2 font-bold text-right border-r border-black text-black">N/A</td>
+                        <td colSpan="2" className="p-2 font-extrabold text-left text-[#c00000]">
+                          {details.questions.filter(q => q.status === 'N/A').length}
+                        </td>
+                      </tr>
+                      <tr className="border-t border-black bg-slate-50 font-bold select-none text-[11px]">
+                        <td colSpan="4" className="p-2 font-bold text-right border-r border-black text-black">Homes possible Score</td>
+                        <td colSpan="2" className="p-2 font-extrabold text-left text-indigo-700">
+                          {details.questions.length - details.questions.filter(q => q.status === 'N/A').length}
+                        </td>
+                      </tr>
+                      <tr className="border-t border-black bg-[#e2f0d9]/60 font-bold select-none text-[11px]">
+                        <td colSpan="4" className="p-2 font-bold text-right border-r border-black text-black">Actual Score</td>
+                        <td colSpan="2" className="p-2 font-extrabold text-left text-[#c00000] text-sm">
+                          {viewReportAudit.score !== null ? viewReportAudit.score : details.actualScore}%
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* Action Plan Table */}
+                <div className="overflow-x-auto border-2 border-black rounded-sm mt-8 select-none">
+                  <table className="w-full text-left border-collapse min-w-[900px] text-black">
+                    <thead>
+                      <tr className="bg-[#92d050] text-black border-b-2 border-black font-extrabold">
+                        <th colSpan="7" className="p-2 text-center text-sm uppercase tracking-wider font-extrabold border-b border-black">
+                          Action Plan
+                        </th>
+                      </tr>
+                      <tr className="bg-[#92d050] text-black border-b border-black text-center font-bold text-[10px] sm:text-xs">
+                        <th className="p-2 border-r border-black w-[15%]">Section</th>
+                        <th className="p-2 border-r border-black w-[22%]">Problem Identified</th>
+                        <th className="p-2 border-r border-black w-[22%]">Actions</th>
+                        <th className="p-2 border-r border-black w-[13%]">Responsible Person</th>
+                        <th className="p-2 border-r border-black w-[10%]">Date to be achieved</th>
+                        <th className="p-2 border-r border-black w-[10%]">Reviewed by</th>
+                        <th className="p-2 w-[13%]">Signed & Dated as completed</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-black font-semibold text-black bg-white">
+                      {details.actionPlans.length === 0 ? (
+                        <tr><td colSpan="7" className="p-4 text-center italic text-slate-500">No action plans required</td></tr>
+                      ) : (
+                        details.actionPlans.map((ap, apIdx) => (
+                          <tr key={apIdx} className="hover:bg-slate-50 text-xs">
+                            <td className="p-2 border-r border-black align-middle font-bold text-black">{ap.section}</td>
+                            <td className="p-2 border-r border-black align-middle text-[#c00000] font-bold">{ap.problem}</td>
+                            <td className="p-2 border-r border-black align-middle text-[#c00000] font-bold">{ap.actions}</td>
+                            <td className="p-2 border-r border-black align-middle text-[#c00000] font-bold text-center">{ap.responsible}</td>
+                            <td className="p-2 border-r border-black align-middle text-[#c00000] font-bold text-center">{ap.targetDate}</td>
+                            <td className="p-2 border-r border-black align-middle text-[#c00000] font-bold text-center">{ap.reviewedBy}</td>
+                            <td className="p-2 align-middle text-[#c00000] font-bold text-center">{ap.signedOff}</td>
+                          </tr>
+                        ))
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* Completion Sign-Off Footer */}
+                <div className="mt-8 border border-black p-4 bg-white text-black font-semibold text-xs space-y-4 rounded-sm select-none">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="flex items-end gap-1">
+                      <span className="shrink-0 text-black">Completed by:</span>
+                      <p className="flex-1 border-b border-dashed border-slate-500 px-1 font-bold text-[#c00000] text-xs">{details.completedBy}</p>
+                    </div>
+                    <div className="flex items-end gap-1">
+                      <span className="shrink-0 text-black">Designation:</span>
+                      <p className="flex-1 border-b border-dashed border-slate-500 px-1 font-bold text-[#c00000] text-xs">{details.designation}</p>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                    <div className="flex items-end gap-1">
+                      <span className="shrink-0 text-black">Signature:</span>
+                      <p className="flex-1 border-b border-dashed border-slate-500 px-1 font-bold text-[#c00000] text-xs italic">{details.signature}</p>
+                    </div>
+                    <div className="flex items-end gap-1">
+                      <span className="shrink-0 text-black">Date:</span>
+                      <p className="flex-1 border-b border-dashed border-slate-500 px-1 font-bold text-[#c00000] text-xs">{details.completionDate}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex justify-end gap-2 pt-6 border-t border-slate-200">
+                  <button 
+                    onClick={() => alert("Exported report summary to CSV format.")} 
+                    className="h-10 px-6 rounded-xl border border-slate-300 font-extrabold text-slate-700 bg-white hover:bg-slate-50 hover:text-black transition-all active:scale-[0.98]"
+                  >
+                    Export Report
+                  </button>
+                  <button 
+                    onClick={() => setViewReportAudit(null)} 
+                    className="h-10 px-8 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-extrabold shadow-md shadow-brand-500/10 active:scale-[0.98] transition-all"
+                  >
+                    Close Report
+                  </button>
+                </div>
+              </div>
+            );
+          })()}
+
         </div>
       ) : (
         // Standard split-pane dashboard
@@ -514,7 +1180,13 @@ const Compliance = () => {
 
                         return (
                           <tr key={aud.id} className="hover:bg-slate-50/40 dark:hover:bg-slate-900/10 transition-colors">
-                            <td className="p-3.5 font-bold text-slate-900 dark:text-white max-w-[200px] truncate">{aud.type}</td>
+                            <td 
+                              onClick={() => setViewReportAudit(aud)}
+                              className="p-3.5 font-bold text-[#2e6559] hover:text-[#1f4940] hover:underline cursor-pointer max-w-[200px] truncate"
+                              title="Click to view audit details"
+                            >
+                              {aud.type}
+                            </td>
                             
                             <td className="p-3.5">
                               <div className="flex items-center gap-2">
@@ -554,7 +1226,9 @@ const Compliance = () => {
                                 </button>
                               ) : isCompleted ? (
                                 <button
-                                  onClick={() => alert(`Report PDF generated: ${aud.type} summary - Score: ${aud.score}%`)}
+                                  onClick={() => {
+                                    setViewReportAudit(aud);
+                                  }}
                                   className="h-7 px-3 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-slate-650 font-bold text-[10px] inline-flex items-center gap-1 transition-all shadow-sm active:scale-[0.98]"
                                 >
                                   <FileDown className="h-3.5 w-3.5" />
@@ -656,6 +1330,269 @@ const Compliance = () => {
               </div>
 
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* Read-Only Report Viewer for Completed Daily Chart Audits */}
+      {viewReportAudit && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 animate-fade-in">
+          <div className="w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-3xl bg-white p-6 md:p-8 shadow-2xl relative animate-slide-up text-xs space-y-6">
+            
+            {/* Header info */}
+            <div className="flex justify-between items-start border-b pb-3 border-slate-200 mb-2 select-none">
+              <div>
+                <span className={`px-2.5 py-0.5 rounded-full border text-[10px] font-bold ${
+                  (viewReportAudit.status === 'Completed' && viewReportAudit.score < 90)
+                    ? 'bg-rose-50 text-rose-700 border-rose-250 dark:bg-rose-500/10 dark:text-rose-455'
+                    : getStatusBadge(viewReportAudit.status)
+                }`}>
+                  {(viewReportAudit.status === 'Completed' && viewReportAudit.score < 90) ? 'Failed' : viewReportAudit.status} Audit
+                </span>
+                <h3 className="text-xl font-black mt-2 text-slate-900">{viewReportAudit.type} Report</h3>
+                <p className="text-[11px] text-slate-400 font-bold mt-0.5">
+                  Audit ID: {viewReportAudit.id} | {viewReportAudit.status === 'Completed' ? `Completed Date: ${viewReportAudit.lastCompleted}` : `Target Date: ${viewReportAudit.scheduledDate}`}
+                </p>
+              </div>
+              <button
+                onClick={() => { setViewReportAudit(null); }}
+                className="text-xs font-bold text-slate-400 hover:text-slate-655 transition-colors"
+              >
+                Close Report
+              </button>
+            </div>
+
+            {(() => {
+              const details = generateAuditDetails(viewReportAudit);
+              const officer = employees.find(e => e.id === viewReportAudit.officerId) || employees[0];
+
+              return (
+                <div className="space-y-6 text-black">
+                  
+                  {/* Brand Header */}
+                  <div className="flex justify-between items-start border-b-2 border-black pb-3 mb-4 select-none">
+                    <div className="flex-1 text-center">
+                      <h2 className="text-lg md:text-xl font-bold tracking-wide uppercase text-black">
+                        Quality & Compliance – The Swan Care Home {viewReportAudit.type}
+                      </h2>
+                    </div>
+                    <div className="shrink-0 ml-4 flex flex-col items-end gap-1">
+                      <img src={logoImg} alt="AS CARE" className="h-10 md:h-12 object-contain" />
+                    </div>
+                  </div>
+
+                  {/* Auditor / Officer Profile Card */}
+                  <div className="bg-slate-50 rounded-xl p-4 border border-slate-200 flex flex-col sm:flex-row gap-4 items-center justify-between select-none">
+                    <div className="flex items-center gap-3">
+                      <img 
+                        src={officer.photo} 
+                        alt={officer.name} 
+                        className="h-12 w-12 rounded-full object-cover border border-slate-300 shrink-0" 
+                      />
+                      <div>
+                        <span className="text-[9px] font-extrabold uppercase tracking-wider text-[#2e6559]">Auditor / Officer Details</span>
+                        <h4 className="text-xs font-bold text-slate-800 leading-none">{officer.name}</h4>
+                        <p className="text-[10px] text-slate-505 font-semibold mt-0.5">{officer.title}</p>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-x-6 gap-y-1.5 text-[10px] text-slate-650 font-semibold w-full sm:w-auto border-t sm:border-t-0 sm:border-l border-slate-200 pt-3 sm:pt-0 sm:pl-6">
+                      <div>
+                        <span className="text-[8px] block text-slate-400 font-bold uppercase">Email Address</span>
+                        <a href={`mailto:${officer.email}`} className="text-[#2e6559] hover:underline font-bold">{officer.email}</a>
+                      </div>
+                      <div>
+                        <span className="text-[8px] block text-slate-400 font-bold uppercase">Contact Number</span>
+                        <span className="text-slate-800 font-bold">{officer.phone}</span>
+                      </div>
+                      <div>
+                        <span className="text-[8px] block text-slate-400 font-bold uppercase">User Role</span>
+                        <span className="text-slate-800 font-bold">{officer.role}</span>
+                      </div>
+                      <div>
+                        <span className="text-[8px] block text-slate-400 font-bold uppercase">Start Date</span>
+                        <span className="text-slate-800 font-bold">{officer.startDate}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Header Details Table Grid */}
+                  <div className="w-full border border-black grid grid-cols-1 sm:grid-cols-4 text-xs font-semibold select-none mb-6">
+                    <div className="p-2 border-b sm:border-b-0 sm:border-r border-black flex items-center gap-2 sm:col-span-2">
+                      <span className="text-black">Auditor:</span>
+                      <p className="font-bold text-[#c00000] text-xs">{details.auditor}</p>
+                    </div>
+                    <div className="p-2 border-b sm:border-b-0 sm:border-r border-black flex items-center gap-2">
+                      <span className="text-black">Signed:</span>
+                      <p className="font-bold text-[#c00000] text-xs">{details.signed}</p>
+                    </div>
+                    <div className="p-2 flex items-center gap-2">
+                      <span className="text-black">Date:</span>
+                      <p className="font-bold text-[#c00000] text-xs">{details.date}</p>
+                    </div>
+                  </div>
+
+                  {/* Document-style continuous form (Read-Only) */}
+                  <div className="overflow-x-auto border-2 border-black rounded-sm">
+                    <table className="w-full text-left border-collapse min-w-[900px] text-black">
+                      <tbody className="divide-y divide-black bg-white">
+                        {Array.from(new Set(details.questions.map(q => q.section))).map(section => (
+                          <React.Fragment key={section}>
+                            {/* Repeated Green Header Row for Each Section */}
+                            <tr className="bg-[#92d050] text-black border-t border-black font-extrabold select-none">
+                              <th className="p-2 border border-black text-center align-middle w-1/4">
+                                <div className="font-extrabold text-xs">Standard</div>
+                                <div className="underline font-bold mt-1 text-xs">{section}</div>
+                              </th>
+                              <th className="p-2 border border-black text-center align-middle text-xs w-12 leading-tight">
+                                Yes
+                              </th>
+                              <th className="p-2 border border-black text-center align-middle text-xs w-12 leading-tight">
+                                No
+                              </th>
+                              <th className="p-2 border border-black text-center align-middle text-xs w-12 leading-tight">
+                                N/A
+                              </th>
+                              <th className="p-2 border border-black text-center align-middle text-xs w-[25%] leading-tight">
+                                Notes / Guidance
+                              </th>
+                              <th className="p-2 border border-black text-center align-middle text-xs w-[25%] leading-tight">
+                                Comments / Findings
+                              </th>
+                            </tr>
+
+                            {details.questions.filter(q => q.section === section).map(q => (
+                              <tr key={q.id} className="hover:bg-slate-50 text-[11px] divide-x divide-black border border-black">
+                                <td className="p-2 align-top font-bold text-black border-r border-black">
+                                  <span>{q.id}. {q.question}</span>
+                                </td>
+                                <td className="p-2 align-top border-r border-black text-center font-bold text-lg text-[#c00000]">
+                                  {q.status === 'YES' ? '✔' : ''}
+                                </td>
+                                <td className="p-2 align-top border-r border-black text-center font-bold text-lg text-[#c00000]">
+                                  {q.status === 'NO' ? '✔' : ''}
+                                </td>
+                                <td className="p-2 align-top border-r border-black text-center font-bold text-lg text-[#c00000]">
+                                  {q.status === 'N/A' ? '✔' : ''}
+                                </td>
+                                <td className="p-2 align-top border-r border-black text-[#c00000] font-bold whitespace-pre-line">
+                                  {q.notes || q.doq || "—"}
+                                </td>
+                                <td className="p-2 align-top text-[#c00000] font-bold whitespace-pre-line">
+                                  {q.comments || "—"}
+                                </td>
+                              </tr>
+                            ))}
+                          </React.Fragment>
+                        ))}
+                        
+                        {/* Score summary rows */}
+                        <tr className="border-t-2 border-black bg-slate-50 font-bold select-none text-[11px]">
+                          <td colSpan="4" className="p-2 font-bold text-right border-r border-black text-black">Possible Score</td>
+                          <td colSpan="2" className="p-2 font-extrabold text-left text-black">{details.questions.length}</td>
+                        </tr>
+                        <tr className="border-t border-black bg-white font-bold select-none text-[11px]">
+                          <td colSpan="4" className="p-2 font-bold text-right border-r border-black text-black">N/A</td>
+                          <td colSpan="2" className="p-2 font-extrabold text-left text-[#c00000]">
+                            {details.questions.filter(q => q.status === 'N/A').length}
+                          </td>
+                        </tr>
+                        <tr className="border-t border-black bg-slate-50 font-bold select-none text-[11px]">
+                          <td colSpan="4" className="p-2 font-bold text-right border-r border-black text-black">Homes possible Score</td>
+                          <td colSpan="2" className="p-2 font-extrabold text-left text-indigo-700">
+                            {details.questions.length - details.questions.filter(q => q.status === 'N/A').length}
+                          </td>
+                        </tr>
+                        <tr className="border-t border-black bg-[#e2f0d9]/60 font-bold select-none text-[11px]">
+                          <td colSpan="4" className="p-2 font-bold text-right border-r border-black text-black">Actual Score</td>
+                          <td colSpan="2" className="p-2 font-extrabold text-left text-[#c00000] text-sm">
+                            {viewReportAudit.score !== null ? viewReportAudit.score : details.actualScore}%
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  {/* Action Plan Table */}
+                  <div className="overflow-x-auto border-2 border-black rounded-sm mt-8 select-none">
+                    <table className="w-full text-left border-collapse min-w-[900px] text-black">
+                      <thead>
+                        <tr className="bg-[#92d050] text-black border-b-2 border-black font-extrabold">
+                          <th colSpan="7" className="p-2 text-center text-sm uppercase tracking-wider font-extrabold border-b border-black">
+                            Action Plan
+                          </th>
+                        </tr>
+                        <tr className="bg-[#92d050] text-black border-b border-black text-center font-bold text-[10px] sm:text-xs">
+                          <th className="p-2 border-r border-black w-[15%]">Section</th>
+                          <th className="p-2 border-r border-black w-[22%]">Problem Identified</th>
+                          <th className="p-2 border-r border-black w-[22%]">Actions</th>
+                          <th className="p-2 border-r border-black w-[13%]">Responsible Person</th>
+                          <th className="p-2 border-r border-black w-[10%]">Date to be achieved</th>
+                          <th className="p-2 border-r border-black w-[10%]">Reviewed by</th>
+                          <th className="p-2 w-[13%]">Signed & Dated as completed</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-black font-semibold text-black bg-white">
+                        {details.actionPlans.length === 0 ? (
+                          <tr><td colSpan="7" className="p-4 text-center italic text-slate-500">No action plans required</td></tr>
+                        ) : (
+                          details.actionPlans.map((ap, apIdx) => (
+                            <tr key={apIdx} className="hover:bg-slate-50 text-xs">
+                              <td className="p-2 border-r border-black align-middle font-bold text-black">{ap.section}</td>
+                              <td className="p-2 border-r border-black align-middle text-[#c00000] font-bold">{ap.problem}</td>
+                              <td className="p-2 border-r border-black align-middle text-[#c00000] font-bold">{ap.actions}</td>
+                              <td className="p-2 border-r border-black align-middle text-[#c00000] font-bold text-center">{ap.responsible}</td>
+                              <td className="p-2 border-r border-black align-middle text-[#c00000] font-bold text-center">{ap.targetDate}</td>
+                              <td className="p-2 border-r border-black align-middle text-[#c00000] font-bold text-center">{ap.reviewedBy}</td>
+                              <td className="p-2 align-middle text-[#c00000] font-bold text-center">{ap.signedOff}</td>
+                            </tr>
+                          ))
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
+
+                  {/* Completion Sign-Off Footer */}
+                  <div className="mt-8 border border-black p-4 bg-white text-black font-semibold text-xs space-y-4 rounded-sm select-none">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="flex items-end gap-1">
+                        <span className="shrink-0 text-black">Completed by:</span>
+                        <p className="flex-1 border-b border-dashed border-slate-500 px-1 font-bold text-[#c00000] text-xs">{details.completedBy}</p>
+                      </div>
+                      <div className="flex items-end gap-1">
+                        <span className="shrink-0 text-black">Designation:</span>
+                        <p className="flex-1 border-b border-dashed border-slate-500 px-1 font-bold text-[#c00000] text-xs">{details.designation}</p>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                      <div className="flex items-end gap-1">
+                        <span className="shrink-0 text-black">Signature:</span>
+                        <p className="flex-1 border-b border-dashed border-slate-500 px-1 font-bold text-[#c00000] text-xs italic">{details.signature}</p>
+                      </div>
+                      <div className="flex items-end gap-1">
+                        <span className="shrink-0 text-black">Date:</span>
+                        <p className="flex-1 border-b border-dashed border-slate-500 px-1 font-bold text-[#c00000] text-xs">{details.completionDate}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex justify-end gap-2 pt-6 border-t border-slate-200">
+                    <button 
+                      onClick={() => alert("Exported report summary to CSV format.")} 
+                      className="h-10 px-6 rounded-xl border border-slate-300 font-extrabold text-slate-700 bg-white hover:bg-slate-50 hover:text-black transition-all active:scale-[0.98]"
+                    >
+                      Export Report
+                    </button>
+                    <button 
+                      onClick={() => setViewReportAudit(null)} 
+                      className="h-10 px-8 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-extrabold shadow-md shadow-brand-500/10 active:scale-[0.98] transition-all"
+                    >
+                      Close Report
+                    </button>
+                  </div>
+                </div>
+              );
+            })()}
+
           </div>
         </div>
       )}

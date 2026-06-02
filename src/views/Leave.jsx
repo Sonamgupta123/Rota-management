@@ -22,6 +22,7 @@ const Leave = () => {
 
   const [applyModalOpen, setApplyModalOpen] = useState(false);
   const [leaveType, setLeaveType] = useState('Annual Leave');
+  const [customLeaveType, setCustomLeaveType] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [daysCount, setDaysCount] = useState(1);
@@ -40,8 +41,10 @@ const Leave = () => {
     e.preventDefault();
     if (!startDate || !endDate) return;
 
+    const finalType = leaveType === 'Other' ? (customLeaveType || 'Other') : leaveType;
+
     applyLeaveRequest(currentEmp.id, {
-      type: leaveType,
+      type: finalType,
       start: startDate,
       end: endDate,
       days: Number(daysCount),
@@ -53,6 +56,8 @@ const Leave = () => {
     setEndDate('');
     setDaysCount(1);
     setReason('');
+    setLeaveType('Annual Leave');
+    setCustomLeaveType('');
     setApplyModalOpen(false);
   };
 
@@ -275,8 +280,23 @@ const Leave = () => {
                   <option value="Sick Leave">Sick Leave (Statutory check)</option>
                   <option value="Compassionate Leave">Compassionate Leave</option>
                   <option value="Maternity / Paternity">Maternity / Paternity</option>
+                  <option value="Other">Other (Specify below)</option>
                 </select>
               </div>
+
+              {leaveType === 'Other' && (
+                <div className="space-y-1 animate-fade-in">
+                  <label className="font-bold text-slate-550 block">Specify Leave Category</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="Enter custom leave category"
+                    value={customLeaveType}
+                    onChange={(e) => setCustomLeaveType(e.target.value)}
+                    className="h-10 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 dark:border-slate-850 dark:bg-slate-900 dark:text-white font-semibold"
+                  />
+                </div>
+              )}
 
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1">

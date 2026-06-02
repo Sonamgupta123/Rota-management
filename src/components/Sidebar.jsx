@@ -19,6 +19,15 @@ import {
 
 const Sidebar = ({ isOpen, setIsOpen }) => {
   const { currentRole, currentView, setCurrentView, setIsLoggedIn } = useApp();
+  const [rotaExpanded, setRotaExpanded] = React.useState(true);
+
+  // Auto-expand Rota parent when any of its submenus are active
+  React.useEffect(() => {
+    const isAnySubmenuActive = ['rota', 'shift-planning', 'day-notes', 'attendance'].includes(currentView);
+    if (isAnySubmenuActive) {
+      setRotaExpanded(true);
+    }
+  }, [currentView]);
 
   // Render navigation links based on RBAC file specifications
   const getNavLinks = () => {
@@ -29,7 +38,6 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           { id: 'employees', label: 'Employee Profiles', icon: Users },
           { id: 'documents', label: 'Compliance Checklist', icon: FileCheck },
           { id: 'rota', label: 'Rota Planner', icon: CalendarDays },
-          { id: 'attendance', label: 'Attendance Monitor', icon: UserCheck },
           { id: 'leave', label: 'Leave Manager', icon: Milestone },
           { id: 'payroll', label: 'Payroll Summary', icon: Receipt },
           { id: 'reports', label: 'Reports Insights', icon: BarChart3 },
@@ -60,7 +68,6 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
           { id: 'employees', label: 'Employee Directory', icon: Users },
           { id: 'rota', label: 'Rota Planner', icon: CalendarDays },
-          { id: 'attendance', label: 'Live Attendance', icon: UserCheck },
           { id: 'documents', label: 'Document Verify', icon: FileCheck },
           { id: 'leave', label: 'Leave Approvals', icon: Milestone },
           { id: 'payroll', label: 'Hours Monitor', icon: Receipt },
@@ -76,7 +83,6 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
         return [
           { id: 'employee-dashboard', label: 'Dashboard', icon: LayoutDashboard },
           { id: 'rota', label: 'My Rota Schedule', icon: CalendarDays },
-          { id: 'attendance', label: 'Clock In/Out', icon: UserCheck },
           { id: 'documents', label: 'My Checklist', icon: FileCheck },
           { id: 'leave', label: 'Request Leave', icon: Milestone },
           { id: 'payroll', label: 'My Payslips', icon: Receipt }
@@ -131,6 +137,114 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           {navLinks.map((link) => {
             const Icon = link.icon;
             const isActive = currentView === link.id;
+
+            if (link.id === 'rota') {
+              const isRotaActive = currentView === 'rota';
+              const isShiftPlanningActive = currentView === 'shift-planning';
+              const isDayNotesActive = currentView === 'day-notes';
+              const isAttendanceActive = currentView === 'attendance';
+              const isAnySubmenuActive = isRotaActive || isShiftPlanningActive || isDayNotesActive || isAttendanceActive;
+              const showAttendanceSubmenu = ['Admin', 'HR', 'Manager', 'Compliance Officer', 'Employee'].includes(currentRole);
+
+              return (
+                <div key="rota-menu-group" className="space-y-1">
+                  {/* Parent Rota Menu Item */}
+                  <button
+                    onClick={() => setRotaExpanded(!rotaExpanded)}
+                    className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-155 group
+                      ${isAnySubmenuActive
+                        ? 'bg-slate-100/80 text-brand-600 dark:bg-slate-800/60 dark:text-brand-400 font-semibold border border-slate-200/50 dark:border-slate-800'
+                        : 'text-slate-600 hover:bg-white hover:text-slate-900 hover:shadow-sm hover:border hover:border-slate-200 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white dark:hover:border-slate-700'
+                      }
+                    `}
+                  >
+                    <Icon className={`h-5 w-5 transition-transform duration-200 group-hover:scale-105
+                      ${isAnySubmenuActive ? 'text-brand-500 dark:text-brand-400' : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-500 dark:group-hover:text-slate-350'}
+                    `} />
+                    <span className="truncate">Rota</span>
+                    <span className="ml-auto text-[10px] font-bold text-slate-400 dark:text-slate-500 transition-transform duration-200">
+                      {rotaExpanded ? '▼' : '►'}
+                    </span>
+                  </button>
+
+                  {/* Submenu Items */}
+                  {rotaExpanded && (
+                    <div className="pl-6 space-y-1 border-l border-slate-200 dark:border-slate-800 ml-5 mt-1 animate-fade-in">
+                      {/* Rota Calendar */}
+                      <button
+                        onClick={() => {
+                          setCurrentView('rota');
+                          setIsOpen(false);
+                        }}
+                        className={`flex w-full items-center gap-2 rounded-lg px-3 py-1.5 text-xs font-semibold transition-all
+                          ${isRotaActive 
+                            ? 'text-brand-650 dark:text-brand-400 bg-white dark:bg-slate-800 shadow-sm border border-slate-200/85 dark:border-slate-700' 
+                            : 'text-slate-550 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'
+                          }
+                        `}
+                      >
+                        <span className={`h-1.5 w-1.5 rounded-full ${isRotaActive ? 'bg-brand-500 dark:bg-brand-400' : 'bg-slate-300 dark:bg-slate-600'}`} />
+                        <span>Rota Calendar</span>
+                      </button>
+
+                      {/* Shift Planning */}
+                      <button
+                        onClick={() => {
+                          setCurrentView('shift-planning');
+                          setIsOpen(false);
+                        }}
+                        className={`flex w-full items-center gap-2 rounded-lg px-3 py-1.5 text-xs font-semibold transition-all
+                          ${isShiftPlanningActive 
+                            ? 'text-brand-650 dark:text-brand-400 bg-white dark:bg-slate-800 shadow-sm border border-slate-200/85 dark:border-slate-700' 
+                            : 'text-slate-550 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'
+                          }
+                        `}
+                      >
+                        <span className={`h-1.5 w-1.5 rounded-full ${isShiftPlanningActive ? 'bg-brand-500 dark:bg-brand-400' : 'bg-slate-300 dark:bg-slate-600'}`} />
+                        <span>Shift Planning</span>
+                      </button>
+
+                      {/* Day Notes */}
+                      <button
+                        onClick={() => {
+                          setCurrentView('day-notes');
+                          setIsOpen(false);
+                        }}
+                        className={`flex w-full items-center gap-2 rounded-lg px-3 py-1.5 text-xs font-semibold transition-all
+                          ${isDayNotesActive 
+                            ? 'text-brand-650 dark:text-brand-400 bg-white dark:bg-slate-800 shadow-sm border border-slate-200/85 dark:border-slate-700' 
+                            : 'text-slate-555 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'
+                          }
+                        `}
+                      >
+                        <span className={`h-1.5 w-1.5 rounded-full ${isDayNotesActive ? 'bg-brand-500 dark:bg-brand-400' : 'bg-slate-300 dark:bg-slate-600'}`} />
+                        <span>Day Notes</span>
+                      </button>
+
+                      {/* Attendance Submenu */}
+                      {showAttendanceSubmenu && (
+                        <button
+                          onClick={() => {
+                            setCurrentView('attendance');
+                            setIsOpen(false);
+                          }}
+                          className={`flex w-full items-center gap-2 rounded-lg px-3 py-1.5 text-xs font-semibold transition-all
+                            ${isAttendanceActive 
+                              ? 'text-brand-650 dark:text-brand-400 bg-white dark:bg-slate-800 shadow-sm border border-slate-200/85 dark:border-slate-700' 
+                              : 'text-slate-550 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'
+                            }
+                          `}
+                        >
+                          <span className={`h-1.5 w-1.5 rounded-full ${isAttendanceActive ? 'bg-brand-500 dark:bg-brand-400' : 'bg-slate-300 dark:bg-slate-600'}`} />
+                          <span>Attendance</span>
+                        </button>
+                      )}
+                    </div>
+                  )}
+                </div>
+              );
+            }
+
             return (
               <button
                 key={link.id}
