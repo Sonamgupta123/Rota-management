@@ -139,7 +139,7 @@ export const INITIAL_EMPLOYEES = [
   }
 ];
 
-// List of the 19 required compliance documents
+// List of the 24 required compliance documents (combining CQC and new types)
 export const MANDATORY_DOCS = [
   "Pension Form",
   "Payroll Form",
@@ -159,7 +159,12 @@ export const MANDATORY_DOCS = [
   "Birth Certificate",
   "Driving Licence",
   "Induction",
-  "ID Verification"
+  "ID Verification",
+  "National ID",
+  "DBS Check",
+  "Qualification Certificate",
+  "Training Certificate",
+  "Other Documents"
 ];
 
 // Build initial high-fidelity document state for employees
@@ -167,38 +172,172 @@ export const buildInitialDocuments = (employees) => {
   const docsState = {};
   
   employees.forEach((emp) => {
+    const empNum = parseInt(emp.id.replace("EMP-", "")) || 0;
+    
     docsState[emp.id] = MANDATORY_DOCS.map((doc, idx) => {
+      // Seed for deterministic unique variation
+      const seed = empNum * 13 + idx;
+      
       // Vary states dynamically to feel populated and alive
-      let uploadStatus = "Uploaded";
-      let verifiedStatus = "Verified";
-      let expiryDate = "2028-12-31";
+      const shouldUpload = idx < 6 || 
+        (emp.id === "EMP-003" && idx === 14) || 
+        (emp.id === "EMP-004" && idx === 19) || 
+        (emp.id === "EMP-005" && idx === 8) || 
+        (emp.id === "EMP-006" && idx === 12);
+
+      let uploadStatus = shouldUpload ? "Uploaded" : "Pending";
+      let verifiedStatus = shouldUpload ? "Verified" : "Needs Verification";
+      let expiryDate = shouldUpload ? "2028-12-31" : "N/A";
+      let status = shouldUpload ? "Verified" : "Not Uploaded";
+      let fileName = shouldUpload ? (doc.toLowerCase().replace(/ /g, '_') + '.pdf') : "";
+      let uploadedBy = shouldUpload ? emp.name : "";
+      
+      // Dynamic varied dates & times
+      const uploadDay = (1 + (seed % 27)).toString().padStart(2, '0');
+      let uploadDate = shouldUpload ? `2026-05-${uploadDay}` : "";
+      let uploadTime = shouldUpload ? `${(8 + (seed % 4)).toString().padStart(2, '0')}:${(10 + (seed % 48)).toString().padStart(2, '0')} AM` : "";
+      
+      // Seeded verifier
+      let verifiedBy = shouldUpload ? ((seed % 2 === 0) ? "Sarah Jenkins" : "Admin User") : "";
+      
+      const verifyDay = (1 + ((parseInt(uploadDay) + (seed % 3)) % 27)).toString().padStart(2, '0');
+      let verificationDate = shouldUpload ? `2026-05-${verifyDay}` : "";
+      let verificationTime = shouldUpload ? `${(1 + (seed % 5)).toString().padStart(2, '0')}:${(12 + (seed % 45)).toString().padStart(2, '0')} PM` : "";
+      
+      const notesOptions = [
+        "Original seen and matches record.",
+        "Original verified. Checked physical document copy.",
+        "Approved after reviewing physical copy during audit.",
+        "Verified details. Certified copy stored.",
+        "Verification complete. Approved by management.",
+        "CQC requirement satisfied. Original verified."
+      ];
+      let verificationNotes = shouldUpload ? notesOptions[seed % notesOptions.length] : "";
+      let originalSeen = shouldUpload ? true : false;
+      let rejectedBy = "";
+      let rejectedDate = "";
+      let rejectedTime = "";
+      let rejectionReason = "";
       
       // Some employees are perfectly compliant, some have missing documents
       if (emp.id === "EMP-008" && idx > 5) {
         uploadStatus = "Pending";
         verifiedStatus = "Needs Verification";
+        status = "Not Uploaded";
         expiryDate = "N/A";
+        fileName = "";
+        uploadedBy = "";
+        uploadDate = "";
+        uploadTime = "";
+        verifiedBy = "";
+        verificationDate = "";
+        verificationTime = "";
+        verificationNotes = "";
+        originalSeen = false;
       } else if (emp.id === "EMP-005" && idx % 7 === 0) {
         uploadStatus = "Pending";
         verifiedStatus = "Needs Verification";
+        status = "Not Uploaded";
         expiryDate = "N/A";
+        fileName = "";
+        uploadedBy = "";
+        uploadDate = "";
+        uploadTime = "";
+        verifiedBy = "";
+        verificationDate = "";
+        verificationTime = "";
+        verificationNotes = "";
+        originalSeen = false;
       } else if (emp.id === "EMP-002" && idx === 2) {
         // Right To Work expiring soon
         uploadStatus = "Uploaded";
         verifiedStatus = "Verified";
+        status = "Verified";
         expiryDate = "2026-06-15"; // Expiring in 2 weeks
       } else if (emp.id === "EMP-003" && idx === 14) {
         // Passport expired or expiring soon
         uploadStatus = "Uploaded";
         verifiedStatus = "Verified";
+        status = "Verified";
         expiryDate = "2026-05-10"; // Expired
+      } else if (emp.id === "EMP-004" && idx === 19) {
+        // Let's make National ID rejected for visual testing
+        uploadStatus = "Pending";
+        verifiedStatus = "Needs Verification";
+        status = "Rejected";
+        expiryDate = "N/A";
+        fileName = "national_id.pdf";
+        uploadedBy = emp.name;
+        uploadDate = "2026-06-02";
+        uploadTime = "11:20 AM";
+        verifiedBy = "";
+        verificationDate = "";
+        verificationTime = "";
+        verificationNotes = "";
+        originalSeen = false;
+        rejectedBy = seed % 2 === 0 ? "Sarah Jenkins" : "Admin User";
+        rejectedDate = `2026-06-0${1 + (seed % 2)}`;
+        rejectedTime = `0${2 + (seed % 3)}:40 PM`;
+        rejectionReason = "Document blurry and unreadable";
+      }
+
+      // If uploaded but not verified, it's pending verification
+      if (uploadStatus === "Uploaded" && verifiedStatus !== "Verified") {
+        status = "Pending Verification";
       }
       
+      const history = [];
+      if (uploadStatus === "Uploaded" || status === "Rejected") {
+        history.push({
+          action: "Uploaded",
+          user: emp.name,
+          date: uploadDate || "2026-05-15",
+          time: uploadTime || "10:30 AM"
+        });
+      }
+      if (status === "Rejected") {
+        history.push({
+          action: "Rejected",
+          user: rejectedBy,
+          date: rejectedDate,
+          time: rejectedTime,
+          reason: rejectionReason
+        });
+      }
+      if (verifiedStatus === "Verified") {
+        history.push({
+          action: "Original Seen Checked",
+          user: verifiedBy,
+          date: verificationDate,
+          time: "02:10 PM"
+        });
+        history.push({
+          action: "Verified",
+          user: verifiedBy,
+          date: verificationDate,
+          time: verificationTime
+        });
+      }
+
       return {
         name: doc,
         uploadStatus,
         verifiedStatus,
+        status,
         expiryDate,
+        fileName,
+        uploadedBy,
+        uploadDate,
+        uploadTime,
+        verifiedBy,
+        verificationDate,
+        verificationTime,
+        verificationNotes,
+        originalSeen,
+        rejectedBy,
+        rejectedDate,
+        rejectedTime,
+        rejectionReason,
         employeeSignature: uploadStatus === "Uploaded" ? "E-Signed" : "Pending Signature",
         managerSignature: verifiedStatus === "Verified" ? "Verified By Manager" : "Pending Verification",
         complianceIndicator: uploadStatus === "Pending" 
@@ -207,7 +346,8 @@ export const buildInitialDocuments = (employees) => {
             ? "Red" 
             : (expiryDate !== "N/A" && new Date(expiryDate) < new Date("2026-07-01"))
               ? "Amber"
-              : "Green"
+              : "Green",
+        history
       };
     });
   });
@@ -359,30 +499,30 @@ export const INITIAL_ATTENDANCE = [
 // Audits types
 export const AUDIT_TYPES = [
   "Fire Audit",
-  "Medication Audit",
+  "Monthly Medication Audit",
   "Care Plan Audit",
   "Health & Safety Audit",
   "Infection Control Audit",
   "Dignity Audit",
-  "Nutrition Audit",
-  "Complaints Audit",
-  "Accident Audit"
+  "Meal Nutrition Audit",
+  "House Keeping Cleaning Standards",
+  "Kitchen Audit"
 ];
 
 // Audit records
 export const INITIAL_AUDITS = [
-  { id: "AUD-001", type: "Daily Walkaround", scheduledDate: "2026-06-01", officerId: "EMP-006", status: "Completed", lastCompleted: "2026-06-01", score: 95 },
+  { id: "AUD-001", type: "Daily Chart Audit", scheduledDate: "2026-06-01", officerId: "EMP-006", status: "Completed", lastCompleted: "2026-06-01", score: 95 },
   { id: "AUD-002", type: "Weekly Medication Audit", scheduledDate: "2026-06-03", officerId: "EMP-006", status: "In Progress", lastCompleted: "2026-05-27", score: null },
   { id: "AUD-052", type: "Monthly Medication Audit", scheduledDate: "2026-05-28", officerId: "EMP-006", status: "Overdue", lastCompleted: "2026-04-28", score: null },
   { id: "AUD-003", type: "Infection Control Audit", scheduledDate: "2026-05-25", officerId: "EMP-006", status: "Overdue", lastCompleted: "2025-11-25", score: null },
   { id: "AUD-004", type: "Care Plan Audit", scheduledDate: "2026-05-15", officerId: "EMP-006", status: "Completed", lastCompleted: "2026-05-15", score: 90 },
   { id: "AUD-005", type: "Health & Safety Audit", scheduledDate: "2026-04-20", officerId: "EMP-006", status: "Completed", lastCompleted: "2026-04-20", score: 92 },
   { id: "AUD-006", type: "Dignity Audit", scheduledDate: "2026-04-01", officerId: "EMP-006", status: "Completed", lastCompleted: "2026-04-01", score: 100 },
-  { id: "AUD-007", type: "Storage of Medication Audit", scheduledDate: "2026-06-02", officerId: "EMP-006", status: "Pending", lastCompleted: "2026-05-02", score: null },
-  { id: "AUD-008", type: "Pressure Mattress Audit", scheduledDate: "2026-05-10", officerId: "EMP-006", status: "Completed", lastCompleted: "2026-05-10", score: 92 },
+  { id: "AUD-007", type: "Ordering and Receipt of Medication Audit", scheduledDate: "2026-06-02", officerId: "EMP-006", status: "Pending", lastCompleted: "2026-05-02", score: null },
+  { id: "AUD-008", type: "Mattress Audit", scheduledDate: "2026-05-10", officerId: "EMP-006", status: "Completed", lastCompleted: "2026-05-10", score: 92 },
   { id: "AUD-009", type: "Call Bell Audit", scheduledDate: "2026-06-05", officerId: "EMP-006", status: "Pending", lastCompleted: "2026-05-05", score: null },
-  { id: "AUD-010", type: "Accident & Incident Audit", scheduledDate: "2026-05-18", officerId: "EMP-006", status: "Completed", lastCompleted: "2026-05-18", score: 96 },
-  { id: "AUD-011", type: "Nutrition & Hydration Audit", scheduledDate: "2026-06-04", officerId: "EMP-006", status: "Pending", lastCompleted: "2026-05-04", score: null },
+  { id: "AUD-010", type: "House Keeping Cleaning Standards", scheduledDate: "2026-05-18", officerId: "EMP-006", status: "Completed", lastCompleted: "2026-05-18", score: 96 },
+  { id: "AUD-011", type: "Meal Nutrition Audit", scheduledDate: "2026-06-04", officerId: "EMP-006", status: "Pending", lastCompleted: "2026-05-04", score: null },
   { id: "AUD-012", type: "Fire Audit", scheduledDate: "2026-06-10", officerId: "EMP-006", status: "Pending", lastCompleted: "2026-03-10", score: null }
 ];
 

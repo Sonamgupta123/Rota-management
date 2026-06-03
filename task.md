@@ -1,21 +1,12 @@
-# Refactoring Progress Tracker
+# Task List - Call Bell Audit High-Fidelity Refactor
 
-- [x] Update state & handlers in `AppContext.jsx`
-- [x] Modify `Header.jsx` (remove role switcher, profile dropdown to only "Logout")
-- [x] Modify `Sidebar.jsx` (add Settings menu option)
-- [x] Create new `Settings.jsx` view (Profile updates page inside settings)
-- [x] Refactor `Employees.jsx` (Full list-to-detail navigation flow with 8 tabbed views matching screenshots)
-  - [x] Dual-view support: List Grid and Detailed profile screen
-  - [x] Toggle layouts: Card Grid View and Table List View switcher
-  - [x] Advanced Filters: Category and Compliance Status dropdowns
-  - [x] Layout Fixes: Beautiful green 'Onboard New Staff' button with correct right-hand alignment
-  - [x] Employee Details tab (Basic info, title, manager)
-  - [x] Personal Information tab (Contact, DOB, email)
-  - [x] Locations tab (Matching screenshot 1: checklist, Search, Select/Deselect All, Save/Cancel)
-  - [x] Roles tab (Matching screenshot 2: checklist grid, Search, Select/Deselect All, Save/Cancel)
-  - [x] Wage & Salary tab (Matching screenshot 3: Default Wage input, Custom Role Rates for Cook, Domestic, Health care assistants, Training; Save/Cancel)
-  - [x] Work Schedule tab (Weekly shift schedule list)
-  - [x] Documents tab (Matching screenshot 4: file list table, owner, added columns, blue '+' add button)
-  - [x] Logbook tab (Historical attendance records)
-- [x] Register new Settings routing in `App.jsx`
-- [x] Verify UI and functionality in light/dark modes
+- [x] Rebuild `CallBellAudit.jsx` with custom layout
+  - [x] Implement branding title banner with AS CARE logo on the right
+  - [x] Implement top metadata table with light blue headers and black borders
+  - [x] Implement Visual Inspection table with vertical header
+  - [x] Implement Random Testing table with 5 testing rows, average response inputs, and actions checkboxes
+  - [x] Implement Call Bell Feedback from Residents table for 3 adults
+  - [x] Implement Action Plan table
+  - [x] Implement Assessor & Manager signatures section
+- [x] Verify build compiles successfully with `npm run build`
+- [x] Manually verify audit rendering and behavior in developer mode

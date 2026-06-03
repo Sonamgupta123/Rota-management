@@ -21,34 +21,34 @@ export const AppProvider = ({ children }) => {
   // Theme state
   const [darkMode, setDarkMode] = useState(true);
 
-  // Auth and session state — restored from localStorage on refresh
+  // Auth and session state — restored from sessionStorage on refresh
   const [isLoggedIn, setIsLoggedInState] = useState(() => {
-    return localStorage.getItem('session_active') === 'true';
+    return sessionStorage.getItem('session_active') === 'true';
   });
 
-  // Role and routing navigation state — restored from localStorage
+  // Role and routing navigation state — restored from sessionStorage
   const [currentRole, setCurrentRoleState] = useState(() => {
-    return localStorage.getItem('session_role') || 'Admin';
+    return sessionStorage.getItem('session_role') || 'Admin';
   });
   const [currentView, setCurrentViewState] = useState(() => {
-    return localStorage.getItem('session_view') || 'dashboard';
+    return sessionStorage.getItem('session_view') || 'dashboard';
   });
 
-  // Wrapper setters that also persist to localStorage
+  // Wrapper setters that also persist to sessionStorage
   const setIsLoggedIn = (val) => {
     if (val) {
-      localStorage.setItem('session_active', 'true');
+      sessionStorage.setItem('session_active', 'true');
     } else {
       // Clear entire session on logout
-      localStorage.removeItem('session_active');
-      localStorage.removeItem('session_role');
-      localStorage.removeItem('session_view');
+      sessionStorage.removeItem('session_active');
+      sessionStorage.removeItem('session_role');
+      sessionStorage.removeItem('session_view');
     }
     setIsLoggedInState(val);
   };
 
   const setCurrentView = (view) => {
-    localStorage.setItem('session_view', view);
+    sessionStorage.setItem('session_view', view);
     setCurrentViewState(view);
   };
 
@@ -81,6 +81,9 @@ export const AppProvider = ({ children }) => {
   // Global state for onboarding modal view, used to conditionally hide layout
   const [isOnboardModalOpen, setIsOnboardModalOpen] = useState(false);
 
+  // Global document compliance filter state
+  const [docStatusFilter, setDocStatusFilter] = useState('All');
+
   // Load theme preference on start
   useEffect(() => {
     const isDark = localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
@@ -108,7 +111,7 @@ export const AppProvider = ({ children }) => {
 
   // Switch role — persists role
   const handleRoleChange = (role) => {
-    localStorage.setItem('session_role', role);
+    sessionStorage.setItem('session_role', role);
     setCurrentRoleState(role);
   };
 
@@ -456,6 +459,189 @@ export const AppProvider = ({ children }) => {
     addNotification('info', `Document "${docName}" updated for ${empName}`);
   };
 
+  const uploadEmployeeDocument = (employeeId, docName, fileName, userName) => {
+    const today = new Date();
+    const dateStr = today.getDate().toString().padStart(2, '0') + '/' + (today.getMonth() + 1).toString().padStart(2, '0') + '/' + today.getFullYear();
+    const timeStr = today.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+
+    setDocuments(prev => {
+      const userDocs = prev[employeeId] || [];
+      const docExists = userDocs.some(d => d.name === docName);
+      
+      const newDocObj = {
+        name: docName,
+        uploadStatus: "Uploaded",
+        verifiedStatus: "Needs Verification",
+        status: "Pending Verification",
+        expiryDate: docName === 'Passport' || docName === 'Driving Licence' || docName === 'Right To Work' ? '2028-12-31' : 'N/A',
+        fileName,
+        uploadedBy: userName,
+        uploadDate: dateStr,
+        uploadTime: timeStr,
+        verifiedBy: "",
+        verificationDate: "",
+        verificationTime: "",
+        verificationNotes: "",
+        originalSeen: false,
+        rejectedBy: "",
+        rejectedDate: "",
+        rejectedTime: "",
+        rejectionReason: "",
+        employeeSignature: "E-Signed",
+        managerSignature: "Pending Verification",
+        complianceIndicator: "Amber",
+        history: [{
+          action: "Uploaded",
+          user: userName,
+          date: dateStr,
+          time: timeStr
+        }]
+      };
+
+      let updatedDocs;
+      if (docExists) {
+        updatedDocs = userDocs.map(doc => {
+          if (doc.name === docName) {
+            const hist = Array.isArray(doc.history) ? [...doc.history] : [];
+            hist.push({
+              action: "Uploaded",
+              user: userName,
+              date: dateStr,
+              time: timeStr
+            });
+            return {
+              ...doc,
+              uploadStatus: "Uploaded",
+              verifiedStatus: "Needs Verification",
+              status: "Pending Verification",
+              fileName,
+              uploadedBy: userName,
+              uploadDate: dateStr,
+              uploadTime: timeStr,
+              verifiedBy: "",
+              verificationDate: "",
+              verificationTime: "",
+              verificationNotes: "",
+              originalSeen: false,
+              rejectedBy: "",
+              rejectedDate: "",
+              rejectedTime: "",
+              rejectionReason: "",
+              employeeSignature: "E-Signed",
+              managerSignature: "Pending Verification",
+              complianceIndicator: "Amber",
+              history: hist
+            };
+          }
+          return doc;
+        });
+      } else {
+        updatedDocs = [newDocObj, ...userDocs];
+      }
+
+      return {
+        ...prev,
+        [employeeId]: updatedDocs
+      };
+    });
+
+    addNotification('success', `Document "${docName}" uploaded successfully.`);
+  };
+
+  const verifyEmployeeDocument = (employeeId, docName, userName, notes) => {
+    const today = new Date();
+    const dateStr = today.getDate().toString().padStart(2, '0') + '/' + (today.getMonth() + 1).toString().padStart(2, '0') + '/' + today.getFullYear();
+    const timeStr = today.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+
+    setDocuments(prev => {
+      const userDocs = prev[employeeId] || [];
+      const updatedDocs = userDocs.map(doc => {
+        if (doc.name === docName) {
+          const hist = Array.isArray(doc.history) ? [...doc.history] : [];
+          hist.push({
+            action: "Original Seen Checked",
+            user: userName,
+            date: dateStr,
+            time: timeStr
+          });
+          hist.push({
+            action: "Verified",
+            user: userName,
+            date: dateStr,
+            time: timeStr
+          });
+          
+          return {
+            ...doc,
+            verifiedStatus: "Verified",
+            status: "Verified",
+            verifiedBy: userName,
+            verificationDate: dateStr,
+            verificationTime: timeStr,
+            verificationNotes: notes || "Original seen and verified.",
+            originalSeen: true,
+            managerSignature: "Verified By Manager",
+            complianceIndicator: "Green",
+            history: hist
+          };
+        }
+        return doc;
+      });
+
+      return {
+        ...prev,
+        [employeeId]: updatedDocs
+      };
+    });
+
+    addNotification('success', `Document "${docName}" verified by ${userName}.`);
+  };
+
+  const rejectEmployeeDocument = (employeeId, docName, userName, reason) => {
+    const today = new Date();
+    const dateStr = today.getDate().toString().padStart(2, '0') + '/' + (today.getMonth() + 1).toString().padStart(2, '0') + '/' + today.getFullYear();
+    const timeStr = today.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+
+    setDocuments(prev => {
+      const userDocs = prev[employeeId] || [];
+      const updatedDocs = userDocs.map(doc => {
+        if (doc.name === docName) {
+          const hist = Array.isArray(doc.history) ? [...doc.history] : [];
+          hist.push({
+            action: "Rejected",
+            user: userName,
+            date: dateStr,
+            time: timeStr,
+            reason
+          });
+
+          return {
+            ...doc,
+            uploadStatus: "Pending",
+            verifiedStatus: "Needs Verification",
+            status: "Rejected",
+            rejectedBy: userName,
+            rejectedDate: dateStr,
+            rejectedTime: timeStr,
+            rejectionReason: reason,
+            employeeSignature: "Pending Signature",
+            managerSignature: "Pending Verification",
+            complianceIndicator: "Red",
+            history: hist
+          };
+        }
+        return doc;
+      });
+
+      return {
+        ...prev,
+        [employeeId]: updatedDocs
+      };
+    });
+
+    addNotification('warning', `Document "${docName}" rejected. Reason: ${reason}`);
+  };
+
   // Onboarding direct helper
   const onboardEmployee = (empData) => {
     const newEmpId = `EMP-0${employees.length + 1}`;
@@ -523,6 +709,7 @@ export const AppProvider = ({ children }) => {
     };
     setAudits(prev => [newAudit, ...prev]);
     addNotification('info', `New care audit scheduled: ${type} for ${date}`);
+    return newAudit;
   };
 
   // Leave operations helpers
@@ -821,6 +1008,8 @@ export const AppProvider = ({ children }) => {
       setClockState,
       isOnboardModalOpen,
       setIsOnboardModalOpen,
+      docStatusFilter,
+      setDocStatusFilter,
       
       // Operations actions
       addShift,
@@ -835,6 +1024,9 @@ export const AppProvider = ({ children }) => {
       registerVisitor,
       checkoutVisitor,
       updateDocumentStatus,
+      uploadEmployeeDocument,
+      verifyEmployeeDocument,
+      rejectEmployeeDocument,
       onboardEmployee,
       submitAuditResult,
       scheduleAudit,
